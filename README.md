@@ -136,6 +136,10 @@ completions = Completely::Completions.new input
 
 # Generate the script
 puts completions.script
+
+# Or, generate a function that echos the script
+puts completions.wrapper_function
+puts completions.wrapper_function "custom_function_name"
 ```
 
 
