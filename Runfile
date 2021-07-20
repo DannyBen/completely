@@ -1,6 +1,7 @@
 require "runfile-tasks"
 require "byebug"
 require_relative 'lib/completely'
+require_relative 'lib/completely/version'
 
 title   "Completely Developer Toolbelt"
 summary "Runfile tasks for building the Completely gem"

@@ -24,7 +24,7 @@ This tool is for you if:
 $ gem install completely
 ```
 
-## Usage
+## Using the `completely` command line
 
 The `completely` command line works with a simple YAML configuration file as
 input, and generates a bash completions script as output.
@@ -108,7 +108,7 @@ simply be added using the [`compgen -A action`][compgen] function, so you can
 in fact use any of its supported arguments.
 
 
-### Using the generated completion scripts
+## Using the generated completion scripts
 
 In order to enable the completions, simply source the generated script:
 
@@ -118,6 +118,25 @@ $ source completely.bash
 
 You may wish to add this to your `~/.bashrc` file to enable this for future
 sessions (just be sure to use absolute path).
+
+## Using from within Ruby code
+
+```ruby
+require 'completely'
+
+# Load from file
+completions = Completely::Completions.load "input.yaml"
+
+# Or, from a hash
+input = {
+  "mygit" => %w[--help --version status init commit],
+  "mygit status" => %w[--help --verbose --branch]
+}
+completions = Completely::Completions.new input
+
+# Generate the script
+puts completions.script
+```
 
 
 ## Contributing / Support
