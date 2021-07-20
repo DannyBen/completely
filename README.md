@@ -9,7 +9,7 @@
 Completely is a command line utility and a Ruby library that lets you generate
 bash completion scripts from simple YAML configuration.
 
-This tool is for you it:
+This tool is for you if:
 
 1. You develop your own command line tools.
 2. Your life feels empty without bash completions.
