@@ -20,7 +20,7 @@ This tool is for you if:
 
 ## Install
 
-```
+```bash
 $ gem install completely
 ```
 
@@ -79,7 +79,7 @@ follows it will be suggested as completions.
 
 To generate the bash script, simply run:
 
-```
+```bash
 $ completely generate
 
 # or, to just preview it without saving:
@@ -88,7 +88,7 @@ $ completely preview
 
 For more options (like setting input/output path), run
 
-```
+```bash
 $ completely --help
 ```
 
@@ -112,7 +112,7 @@ in fact use any of its supported arguments.
 
 In order to enable the completions, simply source the generated script:
 
-```
+```bash
 $ source completely.bash
 ```
 
