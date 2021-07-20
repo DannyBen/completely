@@ -1,0 +1,24 @@
+mygit:
+- --help
+- --version
+- status
+- init
+- commit
+
+mygit status:
+- --help
+- --verbose
+- --branch
+
+mygit init:
+- --bare
+- <directory>
+
+mygit commit:
+- <file>
+- --help
+- --message
+- --all
+- -a
+- --quiet
+- -q

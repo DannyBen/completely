@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Completions do
   subject { described_class.load path }
-  let(:path) { "spec/fixtures/#{file}.yml" }
+  let(:path) { "spec/fixtures/#{file}.yaml" }
   let(:file) { "basic" }
 
   describe '#script' do

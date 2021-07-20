@@ -1,5 +1,7 @@
 *.gem
 /.yardoc
+/completely.bash
+/completely.yaml
 /coverage
 /dev
 /doc
