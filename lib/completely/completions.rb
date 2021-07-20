@@ -19,6 +19,8 @@ module Completely
       ERB.new(template, trim_mode: '%-').result(binding)
     end
 
+  private
+
     def template_path
       @template_path ||= File.expand_path("template.erb", __dir__)
     end

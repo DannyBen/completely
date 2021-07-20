@@ -1,0 +1,13 @@
+completely:
+- --help
+- --version
+- init
+- generate
+
+completely init:
+- --help
+
+completely generate:
+- <directory>
+- --help
+- --force
