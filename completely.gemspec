@@ -4,10 +4,10 @@ require 'date'
 require 'completely/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'bashly'
+  s.name        = 'completely'
   s.version     = Completely::VERSION
   s.date        = Date.today.to_s
-  s.summary     = "Bash Completion Script Generator"
+  s.summary     = "Bash Completions Generator"
   s.description = "Generate bash completion scripts using simple YAML configuration"
   s.authors     = ["Danny Ben Shitrit"]
   s.email       = 'db@dannyben.com'
