@@ -6,7 +6,7 @@
 <%= function_name %>() {
   local cur=${COMP_WORDS[COMP_CWORD]}
 
-  case "$COMP_LINE" in    
+  case "$COMP_LINE" in
 % patterns.each do |pattern, words|
 % next unless words
 % clean_words = words.reject { |w| w =~ /^<.*>$/ }.join " "

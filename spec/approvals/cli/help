@@ -3,7 +3,7 @@ Bash completion script generator
 Usage:
   completely new [CONFIG_PATH]
   completely preview [CONFIG_PATH --function NAME]
-  completely generate [CONFIG_PATH OUTPUT_PATH --function NAME]
+  completely generate [CONFIG_PATH OUTPUT_PATH --function NAME --wrap NAME]
   completely (-h|--help|--version)
 
 Commands:
@@ -19,6 +19,10 @@ Commands:
 Options:
   -f --function NAME
     Modify the name of the function in the generated script
+
+  -w --wrap NAME
+    Wrap the completion script inside a function that echos the script. This is
+    useful if you wish to embed it directly in your script
 
   -h --help
     Show this help
@@ -36,7 +40,8 @@ Parameters:
 Examples:
   completely new
   completely new input.yaml
-  completely preview --function my_completions
+  completely preview --function _my_completions
   completely generate
   completely generate input.yaml
-  completely generate input.yaml output.sh -f my_completions
+  completely generate input.yaml output.sh -f _my_completions
+  completely generate -w give_comps -f my_completions

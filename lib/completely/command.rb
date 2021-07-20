@@ -5,7 +5,7 @@ module Completely
 
     usage "completely new [CONFIG_PATH]"
     usage "completely preview [CONFIG_PATH --function NAME]"
-    usage "completely generate [CONFIG_PATH OUTPUT_PATH --function NAME]"
+    usage "completely generate [CONFIG_PATH OUTPUT_PATH --function NAME --wrap NAME]"
     usage "completely (-h|--help|--version)"
 
     command "new", "Create a new sample YAML configuration file"
@@ -13,16 +13,18 @@ module Completely
     command "generate", "Generate the bash completion script to a file"
 
     option "-f --function NAME", "Modify the name of the function in the generated script"
+    option "-w --wrap NAME", "Wrap the completion script inside a function that echos the script. This is useful if you wish to embed it directly in your script"
 
     param "CONFIG_PATH", "Path to the YAML configuration file"
     param "OUTPUT_PATH", "Path to the output bash script"
 
     example "completely new"
     example "completely new input.yaml"
-    example "completely preview --function my_completions"
+    example "completely preview --function _my_completions"
     example "completely generate"
     example "completely generate input.yaml"
-    example "completely generate input.yaml output.sh -f my_completions"
+    example "completely generate input.yaml output.sh -f _my_completions"
+    example "completely generate -w give_comps -f my_completions"
 
     def new_command
       if File.exist? config_path
@@ -38,7 +40,9 @@ module Completely
     end
     
     def generate_command
-      File.write output_path, script
+      wrap = args['--wrap']
+      output = wrap ? wrapper_function(wrap) : script
+      File.write output_path, output
       say "Saved !txtpur!#{output_path}"
     end
 
@@ -62,6 +66,10 @@ module Completely
 
     def script
       @script ||= completions.script
+    end
+
+    def wrapper_function(wrapper_name)
+      completions.wrapper_function wrapper_name
     end
 
     def completions
