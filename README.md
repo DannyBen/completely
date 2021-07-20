@@ -100,7 +100,7 @@ You may have noticed that the sample file contains two special entries:
 - `<directory>`
 
 These patterns will add the list of files and directories
-(when `<file>` is used) or just directories (when `<directory` is used) to
+(when `<file>` is used) or just directories (when `<directory>` is used) to
 the list of suggestions.
 
 For those interested in the technical details, any word between `<...>` will
