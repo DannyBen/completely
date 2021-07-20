@@ -83,5 +83,23 @@ describe Command do
         expect(File.read "spec/tmp/out.bash").to match_approval('cli/generated-script')
       end
     end
+
+    context "with --function NAME" do
+      after  { system "rm -f completely.bash" }
+
+      it "uses the provided function name" do
+        expect { subject.run %w[generate --function _mycomps] }.to output_approval('cli/generate-function')
+        expect(File.read "completely.bash").to match_approval('cli/generated-script-alt')
+      end
+    end
+
+    context "with --wrapper NAME" do
+      after  { system "rm -f completely.bash" }
+
+      it "wraps the script in a function" do
+        expect { subject.run %w[generate --wrap give_comps] }.to output_approval('cli/generate-wrapper')
+        expect(File.read "completely.bash").to match_approval('cli/generated-wrapped-script')
+      end
+    end
   end
 end

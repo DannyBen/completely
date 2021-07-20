@@ -19,6 +19,17 @@ module Completely
       ERB.new(template, trim_mode: '%-').result(binding)
     end
 
+    def wrapper_function(name = nil)
+      name ||= "send_completions"
+
+      script_lines = script.split("\n").map do |line|
+        clean_line = line.gsub("'") { "\\'" }
+        %Q[  echo $'#{clean_line}']
+      end.join("\n")
+
+      "#{name}() {\n#{script_lines}\n}"
+    end
+
   private
 
     def template_path

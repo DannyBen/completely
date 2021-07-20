@@ -6,7 +6,7 @@
 _completely_completions() {
   local cur=${COMP_WORDS[COMP_CWORD]}
 
-  case "$COMP_LINE" in    
+  case "$COMP_LINE" in
     'completely generate'*) COMPREPLY=($(compgen -A directory -W "--help --force" -- "$cur")) ;;
     'completely init'*) COMPREPLY=($(compgen -W "--help" -- "$cur")) ;;
     'completely'*) COMPREPLY=($(compgen -W "--help --version init generate" -- "$cur")) ;;
