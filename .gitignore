@@ -1,0 +1,12 @@
+*.gem
+/.yardoc
+/coverage
+/dev
+/doc
+/Gemfile.lock
+/gems
+/spec/tmp
+/tmp
+/toc.txt
+debug.rb
+out.sh
