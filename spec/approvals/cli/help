@@ -1,0 +1,42 @@
+Bash completion script generator
+
+Usage:
+  completely new [CONFIG_PATH]
+  completely preview [CONFIG_PATH --function NAME]
+  completely generate [CONFIG_PATH OUTPUT_PATH --function NAME]
+  completely (-h|--help|--version)
+
+Commands:
+  new
+    Create a new sample YAML configuration file
+
+  preview
+    Generate the bash completion script to STDOUT
+
+  generate
+    Generate the bash completion script to a file
+
+Options:
+  -f --function NAME
+    Modify the name of the function in the generated script
+
+  -h --help
+    Show this help
+
+  --version
+    Show version number
+
+Parameters:
+  CONFIG_PATH
+    Path to the YAML configuration file
+
+  OUTPUT_PATH
+    Path to the output bash script
+
+Examples:
+  completely new
+  completely new input.yaml
+  completely preview --function my_completions
+  completely generate
+  completely generate input.yaml
+  completely generate input.yaml output.sh -f my_completions

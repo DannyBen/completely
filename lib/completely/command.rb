@@ -18,11 +18,11 @@ module Completely
     param "OUTPUT_PATH", "Path to the output bash script"
 
     example "completely new"
-    example "completely new input.yml"
+    example "completely new input.yaml"
     example "completely preview --function my_completions"
     example "completely generate"
-    example "completely generate input.yml"
-    example "completely generate input.yml output.sh -f my_completions"
+    example "completely generate input.yaml"
+    example "completely generate input.yaml output.sh -f my_completions"
 
     def new_command
       if File.exist? config_path
@@ -57,7 +57,7 @@ module Completely
     end
 
     def sample_path
-      @sample_path ||= File.expand_path("sample.yml", __dir__)
+      @sample_path ||= File.expand_path("sample.yaml", __dir__)
     end
 
     def script
