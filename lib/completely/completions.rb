@@ -3,16 +3,16 @@ require 'erb'
 
 module Completely
   class Completions
-    attr_reader :config
+    attr_reader :config, :function_name
 
     class << self
-      def load(config_path)
-        new YAML.load_file(config_path)
+      def load(config_path, function_name: nil)
+        new YAML.load_file(config_path), function_name: function_name
       end
     end
 
-    def initialize(config)
-      @config = config
+    def initialize(config, function_name: nil)
+      @config, @function_name = config, function_name
     end
 
     def script
@@ -32,13 +32,11 @@ module Completely
     end
 
     def patterns
-      @patterns ||= config[command]
+      @patterns ||= config.to_a.sort_by { |k, v| -k.size }.to_h
     end
 
-    def root_words
-      @root_words ||= patterns.keys.map do |w|
-        w.split(' ').first
-      end.uniq.sort
+    def function_name
+      @function_name ||= "_#{command}_completions"
     end
 
   end
