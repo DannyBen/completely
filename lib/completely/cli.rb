@@ -1,6 +1,6 @@
 require 'mister_bin'
-require 'completely/command'
 require 'completely/version'
+require 'completely/command'
 
 module Completely
   class CLI
