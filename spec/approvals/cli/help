@@ -40,7 +40,8 @@ Parameters:
 Examples:
   completely new
   completely new input.yaml
-  completely preview --function my_completions
+  completely preview --function _my_completions
   completely generate
   completely generate input.yaml
-  completely generate input.yaml output.sh -f my_completions
+  completely generate input.yaml output.sh -f _my_completions
+  completely generate -w give_comps -f my_completions

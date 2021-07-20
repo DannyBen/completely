@@ -20,10 +20,11 @@ module Completely
 
     example "completely new"
     example "completely new input.yaml"
-    example "completely preview --function my_completions"
+    example "completely preview --function _my_completions"
     example "completely generate"
     example "completely generate input.yaml"
-    example "completely generate input.yaml output.sh -f my_completions"
+    example "completely generate input.yaml output.sh -f _my_completions"
+    example "completely generate -w give_comps -f my_completions"
 
     def new_command
       if File.exist? config_path
