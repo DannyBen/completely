@@ -13,7 +13,10 @@ This tool is for you if:
 
 1. You develop your own command line tools.
 2. Your life feels empty without bash completions.
-3. Bash completion scripts scare you.
+3. Bash completion scripts seem overly complex to you.
+
+Note that if you are building bash command line scripts with [bashly][bashly],
+then this functionality is already integrated with it.
 
 ---
 
@@ -92,7 +95,7 @@ For more options (like setting input/output path), run
 $ completely --help
 ```
 
-### Suggesting files and directories
+### Suggesting files, directories and other bash built-ins
 
 You may have noticed that the sample file contains two special entries:
 
@@ -102,6 +105,33 @@ You may have noticed that the sample file contains two special entries:
 These patterns will add the list of files and directories
 (when `<file>` is used) or just directories (when `<directory>` is used) to
 the list of suggestions.
+
+You may add any of the below keywords to add additional suggestions:
+
+| Keyword     | Meaning
+|-------------|---------------------
+| `<alias>`     | Alias names
+| `<arrayvar>`  | Array variable names
+| `<binding>`   | Readline key binding names
+| `<builtin>`   | Names of shell builtin commands
+| `<command>`   | Command names
+| `<directory>` | Directory names
+| `<disabled>`  | Names of disabled shell builtins
+| `<enabled>`   | Names of enabled shell builtins
+| `<export>`    | Names of exported shell variables
+| `<file>`      | File names
+| `<function>`  | Names of shell functions
+| `<group>`     | Group names
+| `<helptopic>` | Help topics as accepted by the help builtin
+| `<hostname>`  | Hostnames, as taken from the file specified by the HOSTFILE shell variable
+| `<job>`       | Job names
+| `<keyword>`   | Shell reserved words
+| `<running>`   | Names of running jobs
+| `<service>`   | Service names
+| `<signal>`    | Signal names
+| `<stopped>`   | Names of stopped jobs
+| `<user>`      | User names
+| `<variable>`  | Names of all shell variables
 
 For those interested in the technical details, any word between `<...>` will
 simply be added using the [`compgen -A action`][compgen] function, so you can 
@@ -152,3 +182,4 @@ to contribute, feel free to [open an issue][issues].
 
 [issues]: https://github.com/DannyBen/completely/issues
 [compgen]: https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html
+[bashly]: https://github.com/DannyBen/bashly
