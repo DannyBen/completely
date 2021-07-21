@@ -7,12 +7,9 @@
   local cur=${COMP_WORDS[COMP_CWORD]}
 
   case "$COMP_LINE" in
-% patterns.each do |pattern, words|
-% next unless words
-% clean_words = words.reject { |w| w =~ /^<.*>$/ }.join " "
-% functions = words.filter_map { |w| func = w[/^<(.+)>$/, 1] ; "-A #{func}" if func }
-% flags = functions.any? ? "#{functions.join ' '} -W" : "-W"
-    '<%= pattern %>'*) COMPREPLY=($(compgen <%= flags %> "<%= clean_words %>" -- "$cur")) ;;
+% patterns.each do |pattern|
+% next if pattern.empty?
+    '<%= pattern.text %>'*) COMPREPLY=($(compgen <%= pattern.compgen %> -- "$cur")) ;;
 % end
   esac
 }

@@ -3,5 +3,5 @@ if ENV['BYEBUG']
   require 'lp'
 end
 
-# requires 'completely'
+require 'completely/pattern'
 require 'completely/completions'
