@@ -5,6 +5,13 @@ describe Completions do
   let(:path) { "spec/fixtures/#{file}.yaml" }
   let(:file) { "basic" }
 
+  describe '#patterns' do
+    it "returns an array of Pattern objects" do
+      expect(subject.patterns).to be_an Array
+      expect(subject.patterns.first).to be_a Pattern
+    end
+  end
+
   describe '#script' do
     it "returns a bash completions script" do
       expect(subject.script).to match_approval "completions/script"

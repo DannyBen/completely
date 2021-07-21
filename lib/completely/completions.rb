@@ -15,6 +15,10 @@ module Completely
       @config, @function_name = config, function_name
     end
 
+    def patterns
+      @patterns ||= patterns!
+    end
+
     def script
       ERB.new(template, trim_mode: '%-').result(binding)
     end
@@ -32,6 +36,12 @@ module Completely
 
   private
 
+    def patterns!
+      config.map do |text, completions|
+        Pattern.new text, completions
+      end.sort_by { |pattern| -pattern.length }
+    end
+
     def template_path
       @template_path ||= File.expand_path("template.erb", __dir__)
     end
@@ -42,10 +52,6 @@ module Completely
 
     def command
       @command ||= config.keys.first.split(' ').first
-    end
-
-    def patterns
-      @patterns ||= config.to_a.sort_by { |k, v| -k.size }.to_h
     end
 
     def function_name
