@@ -137,6 +137,20 @@ For those interested in the technical details, any word between `<...>` will
 simply be added using the [`compgen -A action`][compgen] function, so you can 
 in fact use any of its supported arguments.
 
+### Suggesting custom dynamic suggestions
+
+You can also use any command that outputs a whitespace-delimited list as a
+suggestions list, by wrapping it in `$(..)`. For example, in order to add git
+branches to your suggestions, use the following:
+
+```yaml
+mygit:
+- $(git branch 2> /dev/null)
+```
+
+The `2> /dev/null` is used so that if the command is executed in a directory
+without a git repository, it will still behave as expected.
+
 
 ## Using the generated completion scripts
 
