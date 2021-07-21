@@ -41,7 +41,7 @@ module Completely
     end
 
     def command
-      @command ||= config.keys.first
+      @command ||= config.keys.first.split(' ').first
     end
 
     def patterns

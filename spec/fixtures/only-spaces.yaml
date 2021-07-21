@@ -1,0 +1,7 @@
+completely init:
+- --help
+
+completely generate:
+- <directory>
+- --help
+- --force
