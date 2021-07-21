@@ -8,7 +8,7 @@ give_comps() {
   echo $'  local cur=${COMP_WORDS[COMP_CWORD]}'
   echo $''
   echo $'  case "$COMP_LINE" in'
-  echo $'    \'mygit status\'*) COMPREPLY=($(compgen -W "--help --verbose --branch" -- "$cur")) ;;'
+  echo $'    \'mygit status\'*) COMPREPLY=($(compgen -W "--help --verbose --branch $(git branch 2> /dev/null)" -- "$cur")) ;;'
   echo $'    \'mygit commit\'*) COMPREPLY=($(compgen -A file -W "--help --message --all -a --quiet -q" -- "$cur")) ;;'
   echo $'    \'mygit init\'*) COMPREPLY=($(compgen -A directory -W "--bare" -- "$cur")) ;;'
   echo $'    \'mygit\'*) COMPREPLY=($(compgen -W "--help --version status init commit" -- "$cur")) ;;'

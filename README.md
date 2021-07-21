@@ -61,6 +61,7 @@ mygit status:
 - --help
 - --verbose
 - --branch
+- $(git branch 2> /dev/null)
 
 mygit init:
 - --bare

@@ -7,7 +7,7 @@ _mycomps() {
   local cur=${COMP_WORDS[COMP_CWORD]}
 
   case "$COMP_LINE" in
-    'mygit status'*) COMPREPLY=($(compgen -W "--help --verbose --branch" -- "$cur")) ;;
+    'mygit status'*) COMPREPLY=($(compgen -W "--help --verbose --branch $(git branch 2> /dev/null)" -- "$cur")) ;;
     'mygit commit'*) COMPREPLY=($(compgen -A file -W "--help --message --all -a --quiet -q" -- "$cur")) ;;
     'mygit init'*) COMPREPLY=($(compgen -A directory -W "--bare" -- "$cur")) ;;
     'mygit'*) COMPREPLY=($(compgen -W "--help --version status init commit" -- "$cur")) ;;
