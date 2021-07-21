@@ -9,6 +9,14 @@ describe Completions do
     it "returns a bash completions script" do
       expect(subject.script).to match_approval "completions/script"
     end
+
+    context "with a configuration file that only includes patterns with spaces" do
+      let(:file) { "only-spaces" }
+
+      it "uses the first word of the first command as the function name" do
+        expect(subject.script).to match_approval "completions/script-only-spaces"
+      end
+    end
   end
 
   describe '#wrapper_function' do
