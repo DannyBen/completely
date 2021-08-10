@@ -27,7 +27,7 @@ module Completely
     end
 
     def compgen
-      @comgen ||= compgen!
+      @compgen ||= compgen!
     end
 
   private

@@ -32,7 +32,7 @@ $ gem install completely
 The `completely` command line works with a simple YAML configuration file as
 input, and generates a bash completions script as output.
 
-The configuration file is built like this:
+The configuration file is built of blocks that look like this:
 
 ```yaml
 pattern:
@@ -40,6 +40,9 @@ pattern:
   - --param
   - command
 ```
+
+Each pattern contains an array of words (or functions) that will be suggested
+for the auto complete process.
 
 You can save a sample YAML file by running:
 
@@ -98,19 +101,23 @@ $ completely --help
 
 ### Suggesting files, directories and other bash built-ins
 
-You may have noticed that the sample file contains two special entries:
+In addition to specifying a simple array of completion words, you may use
+the special syntax `<..>` to suggest more advanced functions.
 
-- `<file>`
-- `<directory>`
+```yaml
+pattern:
+  - <file>
+  - <directory>
+```
 
-These patterns will add the list of files and directories
+These suggestions will add the list of files and directories
 (when `<file>` is used) or just directories (when `<directory>` is used) to
 the list of suggestions.
 
-You may add any of the below keywords to add additional suggestions:
+You may use any of the below keywords to add additional suggestions:
 
-| Keyword     | Meaning
-|-------------|---------------------
+| Keyword       | Meaning
+|---------------|---------------------
 | `<alias>`     | Alias names
 | `<arrayvar>`  | Array variable names
 | `<binding>`   | Readline key binding names
@@ -146,7 +153,7 @@ branches to your suggestions, use the following:
 
 ```yaml
 mygit:
-- $(git branch 2> /dev/null)
+  - $(git branch 2> /dev/null)
 ```
 
 The `2> /dev/null` is used so that if the command is executed in a directory
@@ -197,4 +204,4 @@ to contribute, feel free to [open an issue][issues].
 
 [issues]: https://github.com/DannyBen/completely/issues
 [compgen]: https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html
-[bashly]: https://github.com/DannyBen/bashly
+[bashly]: https://bashly.dannyb.co/
