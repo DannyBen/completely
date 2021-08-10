@@ -36,9 +36,9 @@ The configuration file is built of blocks that look like this:
 
 ```yaml
 pattern:
-  - --argument
-  - --param
-  - command
+- --argument
+- --param
+- command
 ```
 
 Each pattern contains an array of words (or functions) that will be suggested
@@ -106,8 +106,8 @@ the special syntax `<..>` to suggest more advanced functions.
 
 ```yaml
 pattern:
-  - <file>
-  - <directory>
+- <file>
+- <directory>
 ```
 
 These suggestions will add the list of files and directories
@@ -153,7 +153,7 @@ branches to your suggestions, use the following:
 
 ```yaml
 mygit:
-  - $(git branch 2> /dev/null)
+- $(git branch 2> /dev/null)
 ```
 
 The `2> /dev/null` is used so that if the command is executed in a directory
