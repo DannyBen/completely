@@ -19,6 +19,10 @@ module Completely
       @patterns ||= patterns!
     end
 
+    def valid?
+      pattern_prefixes.uniq.count == 1
+    end
+
     def script
       ERB.new(template, trim_mode: '%-').result(binding)
     end
@@ -56,6 +60,10 @@ module Completely
 
     def function_name
       @function_name ||= "_#{command}_completions"
+    end
+
+    def pattern_prefixes
+      patterns.map &:prefix
     end
 
   end

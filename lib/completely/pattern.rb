@@ -26,12 +26,16 @@ module Completely
       end
     end
 
-    def compgen
-      @compgen ||= compgen!
+    def prefix
+      text.split(' ')[0]
     end
 
     def text_without_prefix
       text.split(' ')[1..-1].join ' '
+    end
+
+    def compgen
+      @compgen ||= compgen!
     end
 
   private

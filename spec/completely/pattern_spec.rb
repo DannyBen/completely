@@ -37,6 +37,18 @@ describe Pattern do
     end
   end
 
+  describe '#prefix' do
+    it "returns the first word from text" do
+      expect(subject.prefix).to eq "git"
+    end
+  end
+
+  describe '#text_without_prefix' do
+    it "returns all but the first word from text" do
+      expect(subject.text_without_prefix).to eq "commit"
+    end
+  end
+
   describe '#compgen' do
     it "returns a line of compgen arguments" do
       expect(subject.compgen).to eq %q[-A file -A user -W "--message --help"]
