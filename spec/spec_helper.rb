@@ -12,6 +12,7 @@ include Completely
 ENV['TTY'] = 'off'
 ENV['COLUMNS'] = '80'
 ENV['LINES'] = '30'
+ENV['LC_ALL'] = 'en_US.UTF-8'   # sort order
 
 def reset_tmp_dir
   system 'rm -rf spec/tmp/*'
