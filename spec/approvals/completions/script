@@ -5,11 +5,12 @@
 # Modifying it manually is not recommended
 _completely_completions() {
   local cur=${COMP_WORDS[COMP_CWORD]}
+  local comp_line="${COMP_WORDS[*]:1}"
 
-  case "$COMP_LINE" in
-    'completely generate'*) COMPREPLY=($(compgen -A directory -W "--help --force" -- "$cur")) ;;
-    'completely init'*) COMPREPLY=($(compgen -W "--help" -- "$cur")) ;;
-    'completely'*) COMPREPLY=($(compgen -W "--help --version init generate" -- "$cur")) ;;
+  case "$comp_line" in
+    'generate'*) COMPREPLY=($(compgen -A directory -W "--help --force" -- "$cur")) ;;
+    'init'*) COMPREPLY=($(compgen -W "--help" -- "$cur")) ;;
+    ''*) COMPREPLY=($(compgen -W "--help --version init generate" -- "$cur")) ;;
   esac
 }
 
