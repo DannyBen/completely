@@ -12,7 +12,6 @@ include Completely
 ENV['TTY'] = 'off'
 ENV['COLUMNS'] = '80'
 ENV['LINES'] = '30'
-ENV['LANG'] = 'C'   # consistent sort order
 
 def reset_tmp_dir
   system 'rm -rf spec/tmp/*'
@@ -33,6 +32,6 @@ def run_completions(fixture:, compline:, cword:)
   BASH
 
   Dir.chdir 'spec/fixtures/integration' do
-    `bash ../../../spec/tmp/test.sh`.chomp
+    `bash ../../../spec/tmp/test.sh`.chomp.split(' ').sort
   end
 end

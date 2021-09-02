@@ -11,7 +11,7 @@ describe "generated script" do
 
   context "with just the command name" do
     it "shows all completions" do
-      expect(subject).to eq "--help --version download upload list"
+      expect(subject).to eq %w[--help --version download list upload]
     end
   end
 
@@ -20,7 +20,7 @@ describe "generated script" do
     let(:cword) { 1 }
 
     it "completes the subcommand" do
-      expect(subject).to eq "download"
+      expect(subject).to eq %w[download]
     end
   end
 
@@ -28,7 +28,7 @@ describe "generated script" do
     let(:compline) { 'ftp download' }
 
     it "shows all subcommand completions" do
-      expect(subject).to eq "another-dir dummy-dir ftp.yaml --help --override"
+      expect(subject).to eq %w[--help --override another-dir dummy-dir ftp.yaml]
     end
   end
 
@@ -36,7 +36,7 @@ describe "generated script" do
     let(:compline) { 'ftp upload' }
 
     it "shows all subcommand completions" do
-      expect(subject).to eq "another-dir dummy-dir --help --confirm"
+      expect(subject).to eq %w[--confirm --help another-dir dummy-dir]
     end
   end
 
@@ -44,7 +44,7 @@ describe "generated script" do
     let(:compline) { '/anything/goes/ftp list' }
 
     it "shows all subcommand completions" do
-      expect(subject).to eq "--help --short"
+      expect(subject).to eq %w[--help --short]
     end
   end  
 end
