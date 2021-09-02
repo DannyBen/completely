@@ -12,7 +12,7 @@ include Completely
 ENV['TTY'] = 'off'
 ENV['COLUMNS'] = '80'
 ENV['LINES'] = '30'
-ENV['LC_COLLATE'] = 'C'   # consistent sort order
+ENV['LC_ALL'] = 'C'   # consistent sort order
 
 def reset_tmp_dir
   system 'rm -rf spec/tmp/*'
