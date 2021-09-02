@@ -5,11 +5,12 @@
 # Modifying it manually is not recommended
 <%= function_name %>() {
   local cur=${COMP_WORDS[COMP_CWORD]}
+  local comp_line="${COMP_WORDS[*]:1}"
 
-  case "$COMP_LINE" in
+  case "$comp_line" in
 % patterns.each do |pattern|
 % next if pattern.empty?
-    '<%= pattern.text %>'*) COMPREPLY=($(compgen <%= pattern.compgen %> -- "$cur")) ;;
+    '<%= pattern.text_without_prefix %>'*) COMPREPLY=($(compgen <%= pattern.compgen %> -- "$cur")) ;;
 % end
   esac
 }

@@ -30,6 +30,10 @@ module Completely
       @compgen ||= compgen!
     end
 
+    def text_without_prefix
+      text.split(' ')[1..-1].join ' '
+    end
+
   private
 
     def compgen!
