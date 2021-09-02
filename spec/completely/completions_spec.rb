@@ -5,6 +5,22 @@ describe Completions do
   let(:path) { "spec/fixtures/#{file}.yaml" }
   let(:file) { "basic" }
 
+  describe '#valid?' do
+    context "when all patterns start with the same word" do
+      it "returns true" do
+        expect(subject).to be_valid
+      end
+    end
+
+    context "when not all patterns start with the same word" do
+      let(:file) { 'broken' }
+
+      it "returns false" do
+        expect(subject).not_to be_valid
+      end
+    end
+  end
+
   describe '#patterns' do
     it "returns an array of Pattern objects" do
       expect(subject.patterns).to be_an Array

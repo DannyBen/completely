@@ -37,6 +37,7 @@ module Completely
 
     def preview_command
       puts script
+      syntax_warning unless completions.valid?
     end
     
     def generate_command
@@ -44,6 +45,7 @@ module Completely
       output = wrap ? wrapper_function(wrap) : script
       File.write output_path, output
       say "Saved !txtpur!#{output_path}"
+      syntax_warning unless completions.valid?
     end
 
   private
@@ -74,6 +76,11 @@ module Completely
 
     def completions
       @completions ||= Completions.load(config_path, function_name: args['--function'])
+    end
+
+    def syntax_warning
+      say! "\n!txtred!WARNING:\nYour configuration is invalid."
+      say! "!txtred!All patterns must start with the same word."
     end
 
   end

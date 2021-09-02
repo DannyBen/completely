@@ -29,7 +29,8 @@ describe Command do
       before { reset_tmp_dir }
 
       it "creates a new sample file named completely.yaml" do
-        expect { subject.run %w[new spec/tmp/in.yaml] }.to output_approval('cli/new-path')
+        expect { subject.run %w[new spec/tmp/in.yaml] }
+          .to output_approval('cli/new-path')
         expect(File.read 'spec/tmp/in.yaml').to eq sample
       end
     end
@@ -49,12 +50,21 @@ describe Command do
     after  { system "rm -f completely.yaml" }
 
     it "outputs the generated script to STDOUT" do
-      expect { subject.run %w[preview] }.to output_approval('cli/generated-script')
+      expect { subject.run %w[preview] }
+        .to output_approval('cli/generated-script')
     end
 
     context "with a path argument" do
       it "outputs the generated script to STDOUT" do
-        expect { subject.run %w[preview completely.yaml] }.to output_approval('cli/generated-script')
+        expect { subject.run %w[preview completely.yaml] }
+          .to output_approval('cli/generated-script')
+      end
+    end
+
+    context "with an invalid configuration" do
+      it "outputs a warning to STDERR" do
+        expect { subject.run %w[preview spec/fixtures/broken.yaml] }
+          .to output_approval('cli/warning').to_stderr
       end
     end
   end
@@ -99,6 +109,13 @@ describe Command do
       it "wraps the script in a function" do
         expect { subject.run %w[generate --wrap give_comps] }.to output_approval('cli/generate-wrapper')
         expect(File.read "completely.bash").to match_approval('cli/generated-wrapped-script')
+      end
+    end
+
+    context "with an invalid configuration" do
+      it "outputs a warning to STDERR" do
+        expect { subject.run %w[generate spec/fixtures/broken.yaml spec/tmp/out.bash] }
+          .to output_approval('cli/warning').to_stderr
       end
     end
   end
