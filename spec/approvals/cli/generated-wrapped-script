@@ -6,7 +6,7 @@ give_comps() {
   echo $'# Modifying it manually is not recommended'
   echo $'_mygit_completions() {'
   echo $'  local cur=${COMP_WORDS[COMP_CWORD]}'
-  echo $'  local comp_line="${COMP_WORDS[*]:1}"'
+  echo $'  local comp_line="${COMP_WORDS[@]:1}"'
   echo $''
   echo $'  case "$comp_line" in'
   echo $'    \'status\'*) COMPREPLY=($(compgen -W "--help --verbose --branch $(git branch 2> /dev/null)" -- "$cur")) ;;'
