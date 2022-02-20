@@ -7,7 +7,13 @@ module Completely
 
     class << self
       def load(config_path, function_name: nil)
-        new YAML.load_file(config_path), function_name: function_name
+        begin
+          data = YAML.load_file config_path, aliases: true
+        rescue ArgumentError
+          data = YAML.load_file config_path
+        end
+        
+        new data, function_name: function_name
       end
     end
 
