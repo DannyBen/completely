@@ -1,3 +1,5 @@
+require 'completely/version'
+
 module Completely
   class Command < MisterBin::Command
     help "Bash completion script generator"

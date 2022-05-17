@@ -1,5 +1,4 @@
 require 'mister_bin'
-require 'completely/version'
 require 'completely/command'
 
 module Completely
