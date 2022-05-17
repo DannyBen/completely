@@ -17,6 +17,6 @@ _mygit_completions() {
     ''*) COMPREPLY=($(compgen -W "--help --version status init commit" -- "$cur")) ;;
   esac
 } &&
-complete -F _mygit_completions -o bashdefault -o default mygit
+complete -F _mygit_completions mygit
 
 # ex: filetype=sh

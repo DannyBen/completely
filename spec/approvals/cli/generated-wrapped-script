@@ -18,7 +18,7 @@ give_comps() {
   echo $'    \'\'*) COMPREPLY=($(compgen -W "--help --version status init commit" -- "$cur")) ;;'
   echo $'  esac'
   echo $'} &&'
-  echo $'complete -F _mygit_completions -o bashdefault -o default mygit'
+  echo $'complete -F _mygit_completions mygit'
   echo $''
   echo $'# ex: filetype=sh'
 }

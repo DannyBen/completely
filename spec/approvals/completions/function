@@ -17,7 +17,7 @@ send_completions() {
   echo $'    \'\'*) COMPREPLY=($(compgen -W "--help --version init generate" -- "$cur")) ;;'
   echo $'  esac'
   echo $'} &&'
-  echo $'complete -F _completely_completions -o bashdefault -o default completely'
+  echo $'complete -F _completely_completions completely'
   echo $''
   echo $'# ex: filetype=sh'
 }

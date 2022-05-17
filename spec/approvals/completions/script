@@ -16,6 +16,6 @@ _completely_completions() {
     ''*) COMPREPLY=($(compgen -W "--help --version init generate" -- "$cur")) ;;
   esac
 } &&
-complete -F _completely_completions -o bashdefault -o default completely
+complete -F _completely_completions completely
 
 # ex: filetype=sh
