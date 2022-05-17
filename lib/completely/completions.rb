@@ -10,7 +10,9 @@ module Completely
         begin
           data = YAML.load_file config_path, aliases: true
         rescue ArgumentError
+          # :nocov:
           data = YAML.load_file config_path
+          # :nocov:
         end
         
         new data, function_name: function_name

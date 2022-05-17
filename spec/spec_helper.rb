@@ -25,6 +25,7 @@ def run_completions(fixture:, compline:, cword:)
   File.write "spec/tmp/test.sh", <<~BASH
     #{subject.script}
 
+    source /usr/share/bash-completion/bash_completion
     COMP_WORDS=( #{compline} )
     COMP_CWORD=#{cword}
     _testme
