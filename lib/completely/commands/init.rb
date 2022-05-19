@@ -26,7 +26,7 @@ module Completely
       end
 
       def sample_path
-        @sample_path ||= File.expand_path "../sample.yaml", __dir__
+        @sample_path ||= File.expand_path "../templates/sample.yaml", __dir__
       end
 
     end

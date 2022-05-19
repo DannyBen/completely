@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Commands::Generate do
   subject { CLI.runner }
-  before { system "cp lib/completely/sample.yaml completely.yaml" }
+  before { system "cp lib/completely/templates/sample.yaml completely.yaml" }
   after  { system "rm -f completely.yaml" }
 
   context "with --help" do

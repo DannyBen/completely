@@ -4,7 +4,7 @@ describe Commands::Test do
   subject { CLI.runner }
 
   before do
-    system "cp lib/completely/sample.yaml completely.yaml"
+    system "cp lib/completely/templates/sample.yaml completely.yaml"
     ENV['COMPLETELY_CONFIG_PATH'] = nil
     ENV['COMPLETELY_SCRIPT_PATH'] = nil
     ENV['COMPLETELY_SCRIPT_FUNCTION'] = nil

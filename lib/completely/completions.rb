@@ -59,7 +59,7 @@ module Completely
     end
 
     def template_path
-      @template_path ||= File.expand_path("template.erb", __dir__)
+      @template_path ||= File.expand_path("templates/template.erb", __dir__)
     end
 
     def template

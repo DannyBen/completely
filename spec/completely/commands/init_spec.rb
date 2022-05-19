@@ -4,7 +4,7 @@ describe Commands::Init do
   subject { CLI.runner }
   before { system "rm -f completely.yaml" }
   after  { system "rm -f completely.yaml" }
-  let(:sample) { File.read "lib/completely/sample.yaml" }
+  let(:sample) { File.read "lib/completely/templates/sample.yaml" }
 
   context "with --help" do
     it "shows long usage" do
@@ -30,7 +30,7 @@ describe Commands::Init do
   end
 
   context "when the config file already exists" do
-    before { system "cp lib/completely/sample.yaml completely.yaml" }
+    before { system "cp lib/completely/templates/sample.yaml completely.yaml" }
     after  { system "rm -f completely.yaml" }
     
     it "raises an error" do
