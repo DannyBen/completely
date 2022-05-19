@@ -4,5 +4,6 @@ Commands:
   init      Create a new sample YAML configuration file
   preview   Generate the bash completion script to STDOUT
   generate  Generate the bash completion script to a file
+  test      Test completions
 
 Run completely COMMAND --help for more information
