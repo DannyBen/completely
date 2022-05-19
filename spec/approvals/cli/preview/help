@@ -1,0 +1,16 @@
+Generate the bash completion script to STDOUT
+
+Usage:
+  completely preview [CONFIG_PATH --function NAME]
+  completely preview (-h|--help)
+
+Options:
+  -f --function NAME
+    Modify the name of the function in the generated script
+
+  -h --help
+    Show this help
+
+Parameters:
+  CONFIG_PATH
+    Path to the YAML configuration file [default: completely.yaml]

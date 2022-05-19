@@ -1,0 +1,20 @@
+require 'completely/commands/base'
+
+module Completely
+  module Commands
+    class Preview < Base
+      help "Generate the bash completion script to STDOUT"
+
+      usage "completely preview [CONFIG_PATH --function NAME]"
+      usage "completely preview (-h|--help)"
+
+      function_usage      
+      config_path_usage
+
+      def run
+        puts script
+        syntax_warning unless completions.valid?
+      end
+    end
+  end
+end

@@ -1,0 +1,13 @@
+Create a new sample YAML configuration file
+
+Usage:
+  completely init [CONFIG_PATH]
+  completely init (-h|--help)
+
+Options:
+  -h --help
+    Show this help
+
+Parameters:
+  CONFIG_PATH
+    Path to the YAML configuration file [default: completely.yaml]
