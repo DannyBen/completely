@@ -1,0 +1,18 @@
+cli:
+- command
+- conquer
+
+cli command:
+- subcommand
+- childcommand
+
+cli command subcommand:
+- help
+- --color
+- --force
+
+cli command subcommand*--color:
+- green
+- gray
+- blue
+- red
