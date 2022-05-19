@@ -41,7 +41,23 @@ describe "generated script" do
     end
   end
 
-  context "when the command is prefix by a path" do
+  context "with command that contains spaces" do
+    let(:compline) { 'ftp connect ssh ' }
+
+    it "shows completions" do
+      expect(response).to eq %w[--keyfile]
+    end
+  end
+
+  context "with command that contains a wildcard" do
+    let(:compline) { 'ftp connect --protocol ' }
+
+    it "shows completions" do
+      expect(response).to eq %w[scp sftp]
+    end
+  end
+
+  context "when the command is prefixed by a path" do
     let(:compline) { '/anything/goes/ftp list ' }
 
     it "shows all subcommand completions" do

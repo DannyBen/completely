@@ -18,3 +18,10 @@ ftp upload:
 ftp list:
 - --help
 - --short
+
+ftp connect ssh:
+- --keyfile
+
+ftp connect*--protocol:
+- scp
+- sftp
