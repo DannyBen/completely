@@ -3,6 +3,7 @@ require 'completely/commands/init'
 require 'completely/commands/preview'
 require 'completely/commands/generate'
 require 'completely/commands/test'
+require 'completely/version'
 
 module Completely
   class CLI
