@@ -1,5 +1,0 @@
-Usage:
-  completely new [CONFIG_PATH]
-  completely preview [CONFIG_PATH --function NAME]
-  completely generate [CONFIG_PATH OUTPUT_PATH --function NAME --wrap NAME]
-  completely (-h|--help|--version)
