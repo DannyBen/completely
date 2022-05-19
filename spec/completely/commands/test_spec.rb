@@ -47,13 +47,13 @@ describe Commands::Test do
 
   context "when COMPLETELY_SCRIPT_PATH and COMPLETELY_SCRIPT_FUNCTION are set" do
     before do
-      ENV['COMPLETELY_SCRIPT_PATH'] = "/usr/share/bash-completion/completions/git"
-      ENV['COMPLETELY_SCRIPT_FUNCTION'] = "_git"
+      ENV['COMPLETELY_SCRIPT_PATH'] = "/usr/share/bash-completion/completions/apt"
+      ENV['COMPLETELY_SCRIPT_FUNCTION'] = "_apt"
     end
 
     it "tests against this script" do
-      expect { subject.run ["test", "git pu"] }
-        .to output_approval('cli/test/comps-git')
+      expect { subject.run ["test", "apt up"] }
+        .to output_approval('cli/test/comps-apt')
     end
   end
 
