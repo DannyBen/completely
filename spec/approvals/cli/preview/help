@@ -14,3 +14,9 @@ Options:
 Parameters:
   CONFIG_PATH
     Path to the YAML configuration file [default: completely.yaml]
+
+Environment Variables:
+  COMPLETELY_DEBUG
+    It not empty, the generated script will include an additional debugging
+    snippet that outputs the compline and current word to a text file when a
+    completion is requested

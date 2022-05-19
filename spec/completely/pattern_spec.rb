@@ -43,7 +43,7 @@ describe Pattern do
     end
   end
 
-  describe '#case_string', :focus do
+  describe '#case_string' do
     it "returns the quoted pattern (excluding command name) with a wildcard suffix" do
       expect(subject.case_string).to eq "'commit'*"
     end

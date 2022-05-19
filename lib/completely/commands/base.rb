@@ -12,6 +12,10 @@ module Completely
         def function_usage
           option "-f --function NAME", "Modify the name of the function in the generated script"
         end
+
+        def debug_usage
+          environment "COMPLETELY_DEBUG", "It not empty, the generated script will include an additional debugging snippet that outputs the compline and current word to a text file when a completion is requested"
+        end
       end
 
     protected

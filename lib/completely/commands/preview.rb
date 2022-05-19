@@ -10,6 +10,7 @@ module Completely
 
       function_usage
       config_path_usage
+      debug_usage
 
       def run
         puts script

@@ -37,6 +37,11 @@ Environment Variables:
     The main completion function to call when using a custom script. If not set,
     the basename of the script path will be used, prefixed by an underscore
 
+  COMPLETELY_DEBUG
+    It not empty, the generated script will include an additional debugging
+    snippet that outputs the compline and current word to a text file when a
+    completion is requested
+
 Examples:
   completely test "mygit pu"
   completely test "mygit pull "
