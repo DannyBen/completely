@@ -209,7 +209,7 @@ $ source completely.bash
 You may wish to add this to your `~/.bashrc` file to enable this for future
 sessions (just be sure to use absolute path).
 
-## Testing and debugging completions scripts
+## Testing and debugging completion scripts
 
 You can use the built in completions script tester by running `completely test`.
 
