@@ -40,6 +40,17 @@ describe Completions do
         expect(subject.script).to match_approval "completions/script-only-spaces"
       end
     end
+
+    context "when COMPLETELY_DEBUG is set", :focus do
+      before { ENV['COMPLETELY_DEBUG'] = '1' }
+      after  { ENV['COMPLETELY_DEBUG'] = nil }
+
+      it "adds an additional debug snippet to the script" do
+        expect(subject.script).to match_approval("completions/script-with-debug")
+          .except(/case.*/m)
+
+      end
+    end
   end
 
   describe '#wrapper_function' do

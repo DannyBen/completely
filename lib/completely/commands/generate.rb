@@ -13,6 +13,7 @@ module Completely
 
       config_path_usage
       param "OUTPUT_PATH", "Path to the output bash script [default: completely.bash]"
+      debug_usage
 
       def run
         wrap = args['--wrap']

@@ -5,16 +5,16 @@
 # Modifying it manually is not recommended
 
 _mygit_completions() {
-  local cur comp_line
+  local cur compline
   _init_completion -s || return
   cur=${COMP_WORDS[COMP_CWORD]}
-  comp_line="${COMP_WORDS[@]:1}"
+  compline="${COMP_WORDS[@]:1:$COMP_CWORD-1}"
 
-  case "$comp_line" in
+  case "$compline" in
     'status'*) COMPREPLY=($(compgen -W "--help --verbose --branch $(git branch 2> /dev/null)" -- "$cur")) ;;
     'commit'*) COMPREPLY=($(compgen -A file -W "--help --message --all -a --quiet -q" -- "$cur")) ;;
     'init'*) COMPREPLY=($(compgen -A directory -W "--bare" -- "$cur")) ;;
-    ''*) COMPREPLY=($(compgen -W "--help --version status init commit" -- "$cur")) ;;
+    *) COMPREPLY=($(compgen -W "--help --version status init commit" -- "$cur")) ;;
   esac
 } &&
 complete -F _mygit_completions mygit
