@@ -206,8 +206,12 @@ In order to enable the completions, simply source the generated script:
 $ source completely.bash
 ```
 
-You may wish to add this to your `~/.bashrc` file to enable this for future
-sessions (just be sure to use absolute path).
+In order to load these completions on startup, you may want to place them in 
+the completions directory of your operating system, which can be either of
+these (whichever exists):
+
+- `/usr/share/bash-completion/completions`
+- `/usr/local/etc/bash_completion.d`
 
 ## Testing and debugging completion scripts
 
