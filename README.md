@@ -47,7 +47,7 @@ for the auto complete process.
 You can save a sample YAML file by running:
 
 ```
-$ completely new
+$ completely init
 ```
 
 This will generate a file named `completely.yaml` with this content:
