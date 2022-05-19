@@ -8,11 +8,16 @@ cli command:
 
 cli command subcommand:
 - help
+- -c
 - --color
 - --force
 
 cli command subcommand*--color:
 - green
 - gray
+- blue
+- red
+
+cli command subcommand*-c:
 - blue
 - red

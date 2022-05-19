@@ -45,5 +45,8 @@ gradual:
 - compline: "cli command subcommand --color gr"
   expected: [gray, green]
 
+- compline: "cli command subcommand -c "
+  expected: [blue, red]
+
 - compline: "cli command subcommand anything --color gr"
   expected: [gray, green]
