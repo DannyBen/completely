@@ -1,0 +1,19 @@
+cli:
+- --help
+- --version
+- command
+- conquer
+
+cli command:
+- subcommand
+- childcommand
+
+cli command subcommand:
+- --force
+- --quiet
+
+cli command childcommand:
+- --quiet
+- --verbose
+- -q
+- -v

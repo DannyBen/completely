@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+source "<path removed>"
+
+# END OF COMPLETION SCRIPT
+
+source /usr/share/bash-completion/bash_completion
+COMP_WORDS=( cli co )
+COMP_LINE="cli co"
+COMP_POINT=${#COMP_LINE}
+COMP_CWORD=1
+
+_cli_completions
+echo "${COMPREPLY[*]}"

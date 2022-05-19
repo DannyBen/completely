@@ -46,6 +46,10 @@ module Completely
       "#{name}() {\n#{script_lines}\n}"
     end
 
+    def tester
+      @tester ||= Tester.new script: script, function_name: function_name
+    end
+
   private
 
     def patterns!

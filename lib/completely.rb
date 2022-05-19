@@ -5,3 +5,4 @@ end
 
 require 'completely/pattern'
 require 'completely/completions'
+require 'completely/tester'

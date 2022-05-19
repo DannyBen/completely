@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+<%= script || %Q[source "#{absolute_script_path}"] %>
+
+# END OF COMPLETION SCRIPT
+
+source /usr/share/bash-completion/bash_completion
+COMP_WORDS=( <%= compline %> )
+COMP_LINE="<%= compline %>"
+COMP_POINT=${#COMP_LINE}
+COMP_CWORD=<%= cword %>
+
+<%= function_name %>
+echo "${COMPREPLY[*]}"

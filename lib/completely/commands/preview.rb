@@ -8,7 +8,7 @@ module Completely
       usage "completely preview [CONFIG_PATH --function NAME]"
       usage "completely preview (-h|--help)"
 
-      function_usage      
+      function_usage
       config_path_usage
 
       def run

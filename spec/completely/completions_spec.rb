@@ -47,4 +47,14 @@ describe Completions do
       expect(subject.wrapper_function).to match_approval "completions/function"
     end
   end
+
+  describe '#tester', :focus do
+    it "returns a Tester object" do
+      expect(subject.tester).to be_a Tester
+    end
+
+    it "assigns self.script to tester.script" do
+      expect(subject.tester.script).to eq subject.script
+    end
+  end
 end
