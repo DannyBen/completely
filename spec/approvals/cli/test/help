@@ -7,7 +7,8 @@ In order to test on a completely configuration file other than
 'completely.yaml', set the COMPLETELY_CONFIG_PATH environemnt variable.
 
 In order to test on an arbitrary completions script, set the
-COMPLETELY_SCRIPT_PATH and COMPLETELY_SCRIPT_FUNCTION environment variables.
+COMPLETELY_SCRIPT_PATH and optionally the COMPLETELY_SCRIPT_FUNCTION environment
+variables.
 
 Usage:
   completely test COMPLINE
@@ -33,11 +34,11 @@ Environment Variables:
     of the completely configuration file
 
   COMPLETELY_SCRIPT_FUNCTION
-    The main completion function to call when using a custom script
+    The main completion function to call when using a custom script. If not set,
+    the basename of the script path will be used, prefixed by an underscore
 
 Examples:
   completely test "mygit pu"
   completely test "mygit pull "
-  COMPLETELY_SCRIPT_PATH=/usr/share/bash-completion/completions/git \
-    COMPLETELY_SCRIPT_FUNCTION=_git \
-    completely test "git pu"
+  COMPLETELY_SCRIPT_PATH=/usr/share/bash-completion/completions/chown \
+    completely test "chown --"
