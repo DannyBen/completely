@@ -5,15 +5,22 @@
 # Modifying it manually is not recommended
 
 <%= function_name %>() {
-  local cur comp_line
+  local cur compline
   _init_completion -s || return
   cur=${COMP_WORDS[COMP_CWORD]}
-  comp_line="${COMP_WORDS[@]:1}"
+  compline="${COMP_WORDS[@]:1:$COMP_CWORD-1}"
 
-  case "$comp_line" in
+% if ENV['COMPLETELY_DEBUG']
+  if [[ -n "$COMPLETELY_DEBUG" ]]; then
+    echo "compline: '$compline'" > 'completely-debug.txt'
+    echo "cur:      '$cur'" >> 'completely-debug.txt'
+  fi
+
+%end
+  case "$compline" in
 % patterns.each do |pattern|
 % next if pattern.empty?
-    '<%= pattern.text_without_prefix %>'*) COMPREPLY=($(compgen <%= pattern.compgen %> -- "$cur")) ;;
+    <%= pattern.case_string %>) COMPREPLY=($(compgen <%= pattern.compgen %> -- "$cur")) ;;
 % end
   esac
 } &&

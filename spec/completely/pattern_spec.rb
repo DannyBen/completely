@@ -43,6 +43,28 @@ describe Pattern do
     end
   end
 
+  describe '#case_string', :focus do
+    it "returns the quoted pattern (excluding command name) with a wildcard suffix" do
+      expect(subject.case_string).to eq "'commit'*"
+    end
+
+    context "when the pattern (excluding command name) is empty" do
+      let(:text) { "git" }
+
+      it "returns '*'" do
+        expect(subject.case_string).to eq "*"
+      end
+    end
+
+    context "when the pattern includes a wildcard" do
+      let(:text) { "git checkout*--branch" }
+
+      it "returns the quoted pattern (excluding command name) with an unquoted wildcard and without a wildcard suffix" do
+        expect(subject.case_string).to eq "'checkout'*'--branch'"
+      end
+    end
+  end
+
   describe '#text_without_prefix' do
     it "returns all but the first word from text" do
       expect(subject.text_without_prefix).to eq "commit"

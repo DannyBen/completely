@@ -30,8 +30,18 @@ module Completely
       text.split(' ')[0]
     end
 
+    def case_string
+      if text_without_prefix.empty?
+        "*"
+      elsif text_without_prefix.include? "*" 
+        %Q['#{text_without_prefix.gsub "*", "'*'"}']
+      else
+        %Q['#{text_without_prefix}'*]
+      end
+    end
+
     def text_without_prefix
-      text.split(' ')[1..-1].join ' '
+      @text_without_prefix ||= text.split(' ')[1..-1].join ' '
     end
 
     def compgen
