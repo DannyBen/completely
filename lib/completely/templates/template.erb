@@ -7,6 +7,7 @@
 <%= function_name %>() {
   local cur compline
   _init_completion -s || return
+
   cur=${COMP_WORDS[COMP_CWORD]}
   compline="${COMP_WORDS[@]:1:$COMP_CWORD-1}"
 
@@ -20,7 +21,10 @@
   case "$compline" in
 % patterns.each do |pattern|
 % next if pattern.empty?
-    <%= pattern.case_string %>) COMPREPLY=($(compgen <%= pattern.compgen %> -- "$cur")) ;;
+    <%= pattern.case_string %>)
+      COMPREPLY=($(compgen <%= pattern.compgen %> -- "$cur"))
+      ;;
+
 % end
   esac
 } &&

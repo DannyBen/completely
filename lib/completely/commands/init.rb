@@ -8,7 +8,8 @@ module Completely
       usage "completely init [CONFIG_PATH]"
       usage "completely init (-h|--help)"
 
-      config_path_usage
+      param_config_path
+      environment_config_path
 
       def run
         if File.exist? config_path

@@ -7,12 +7,19 @@
 _completely_completions() {
   local cur compline
   _init_completion -s || return
+
   cur=${COMP_WORDS[COMP_CWORD]}
   compline="${COMP_WORDS[@]:1:$COMP_CWORD-1}"
 
   case "$compline" in
-    'generate'*) COMPREPLY=($(compgen -A directory -W "--help --force" -- "$cur")) ;;
-    'init'*) COMPREPLY=($(compgen -W "--help" -- "$cur")) ;;
+    'generate'*)
+      COMPREPLY=($(compgen -A directory -W "--help --force" -- "$cur"))
+      ;;
+
+    'init'*)
+      COMPREPLY=($(compgen -W "--help" -- "$cur"))
+      ;;
+
   esac
 } &&
 complete -F _completely_completions completely

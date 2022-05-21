@@ -18,10 +18,10 @@ module Completely
 
       param "COMPLINE", "The command to test completions for. This will be handled as if a TAB was pressed immediately at the end of it, so the last word is considered the active cursor. If you wish to complete for the next word instead, end your command with a space."
 
-      environment "COMPLETELY_CONFIG_PATH", "Path to a completely configuration file [default: completely.yaml]"
+      environment_config_path
       environment "COMPLETELY_SCRIPT_PATH", "Path to a completions script. When set, this script will be tested instead of the completely configuration file"
       environment "COMPLETELY_SCRIPT_FUNCTION", "The main completion function to call when using a custom script. If not set, the basename of the script path will be used, prefixed by an underscore"
-      debug_usage
+      environment_debug
 
       example %q[completely test "mygit pu"]
       example %q[completely test "mygit pull "]

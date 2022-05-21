@@ -29,6 +29,21 @@ describe Commands::Init do
     end
   end
 
+  context "with COMPLETELY_CONFIG_PATH env var" do
+    before do
+      reset_tmp_dir
+      ENV['COMPLETELY_CONFIG_PATH'] = 'spec/tmp/hello.yml'
+    end
+
+    after { ENV['COMPLETELY_CONFIG_PATH'] = nil }
+
+    it "creates a new sample file with the requested name" do
+      expect { subject.run %w[init] }
+        .to output_approval('cli/init/custom-path-env')
+      expect(File.read 'spec/tmp/hello.yml').to eq sample
+    end
+  end
+
   context "when the config file already exists" do
     before { system "cp lib/completely/templates/sample.yaml completely.yaml" }
     after  { system "rm -f completely.yaml" }
