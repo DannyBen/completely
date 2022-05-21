@@ -20,7 +20,8 @@ Parameters:
     Path to the YAML configuration file [default: completely.yaml]
 
   OUTPUT_PATH
-    Path to the output bash script [default: completely.bash]
+    Path to the output bash script. When not provided, the name of the input
+    file will be used with a .bash extension
 
 Environment Variables:
   COMPLETELY_DEBUG

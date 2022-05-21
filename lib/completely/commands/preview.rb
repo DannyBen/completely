@@ -8,9 +8,9 @@ module Completely
       usage "completely preview [CONFIG_PATH --function NAME]"
       usage "completely preview (-h|--help)"
 
-      function_usage
-      config_path_usage
-      debug_usage
+      option_function
+      param_config_path
+      environment_debug
 
       def run
         puts script

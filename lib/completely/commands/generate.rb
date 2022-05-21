@@ -8,12 +8,12 @@ module Completely
       usage "completely generate [CONFIG_PATH OUTPUT_PATH --function NAME --wrap NAME]"
       usage "completely generate (-h|--help)"
 
-      function_usage
+      option_function
       option "-w --wrap NAME", "Wrap the completion script inside a function that echos the script. This is useful if you wish to embed it directly in your script"
 
-      config_path_usage
-      param "OUTPUT_PATH", "Path to the output bash script [default: completely.bash]"
-      debug_usage
+      param_config_path
+      param "OUTPUT_PATH", "Path to the output bash script. When not provided, the name of the input file will be used with a .bash extension"
+      environment_debug
 
       def run
         wrap = args['--wrap']
@@ -30,7 +30,7 @@ module Completely
       end
 
       def output_path
-        @output_path ||= args['OUTPUT_PATH'] || "completely.bash"
+        @output_path ||= args['OUTPUT_PATH'] || "#{config_basename}.bash"
       end
 
     end

@@ -7,14 +7,27 @@
 _mycomps() {
   local cur compline
   _init_completion -s || return
+
   cur=${COMP_WORDS[COMP_CWORD]}
   compline="${COMP_WORDS[@]:1:$COMP_CWORD-1}"
 
   case "$compline" in
-    'status'*) COMPREPLY=($(compgen -W "--help --verbose --branch $(git branch 2> /dev/null)" -- "$cur")) ;;
-    'commit'*) COMPREPLY=($(compgen -A file -W "--help --message --all -a --quiet -q" -- "$cur")) ;;
-    'init'*) COMPREPLY=($(compgen -A directory -W "--bare" -- "$cur")) ;;
-    *) COMPREPLY=($(compgen -W "--help --version status init commit" -- "$cur")) ;;
+    'status'*)
+      COMPREPLY=($(compgen -W "--help --verbose --branch $(git branch 2> /dev/null)" -- "$cur"))
+      ;;
+
+    'commit'*)
+      COMPREPLY=($(compgen -A file -W "--help --message --all -a --quiet -q" -- "$cur"))
+      ;;
+
+    'init'*)
+      COMPREPLY=($(compgen -A directory -W "--bare" -- "$cur"))
+      ;;
+
+    *)
+      COMPREPLY=($(compgen -W "--help --version status init commit" -- "$cur"))
+      ;;
+
   esac
 } &&
 complete -F _mycomps mygit

@@ -21,7 +21,7 @@ module Completely
       environment "COMPLETELY_CONFIG_PATH", "Path to a completely configuration file [default: completely.yaml]"
       environment "COMPLETELY_SCRIPT_PATH", "Path to a completions script. When set, this script will be tested instead of the completely configuration file"
       environment "COMPLETELY_SCRIPT_FUNCTION", "The main completion function to call when using a custom script. If not set, the basename of the script path will be used, prefixed by an underscore"
-      debug_usage
+      environment_debug
 
       example %q[completely test "mygit pu"]
       example %q[completely test "mygit pull "]
