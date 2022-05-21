@@ -1,1 +1,1 @@
-#<RuntimeError: Please set the proper environment variables or run in a folder with completely.yaml>
+#<Errno::ENOENT: No such file or directory @ rb_sysopen - completely.yaml>
