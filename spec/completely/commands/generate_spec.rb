@@ -44,16 +44,16 @@ describe Commands::Generate do
     end
   end
 
-  context "with COMPLETELY_SCRIPT_PATH env var" do
+  context "with COMPLETELY_OUTPUT_PATH env var" do
     let(:outfile) { 'spec/tmp/tada.bash' }
 
     before do
       reset_tmp_dir
-      ENV['COMPLETELY_SCRIPT_PATH'] = outfile
+      ENV['COMPLETELY_OUTPUT_PATH'] = outfile
     end
 
     after do
-      ENV['COMPLETELY_SCRIPT_PATH'] = nil
+      ENV['COMPLETELY_OUTPUT_PATH'] = nil
     end
 
     it "generates the bash script to the requested path" do
@@ -62,7 +62,7 @@ describe Commands::Generate do
     end
   end
 
-  context "with CONFIG_PATH SCRIPT_PATH" do
+  context "with CONFIG_PATH OUTPUT_PATH" do
     before { reset_tmp_dir }
 
     it "generates the bash script to the specified path" do

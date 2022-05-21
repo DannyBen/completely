@@ -7,6 +7,12 @@ describe Tester do
   let(:fixture) { 'default' }
   let(:compline) { "cli co" }
 
+  before :all do
+    # Create an up to date fixture
+    comps = Completions.load "spec/fixtures/tester/default.yaml"
+    File.write "spec/fixtures/tester/default.bash", comps.script
+  end
+
   describe "#tester_script" do
     it "sources the script using its absolute path" do
       expect(subject.tester_script compline).to match %r[source "/.*spec/fixtures/tester/default.bash"]
@@ -18,7 +24,7 @@ describe Tester do
     end
   end
 
-  describe '#test' do
+  describe '#test', :focus do
     it "returns an array with completions" do
       expect(subject.test compline).to eq ["command", "conquer"]
     end

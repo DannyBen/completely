@@ -6,8 +6,6 @@ describe Commands::Test do
   before do
     system "cp lib/completely/templates/sample.yaml completely.yaml"
     ENV['COMPLETELY_CONFIG_PATH'] = nil
-    ENV['COMPLETELY_SCRIPT_PATH'] = nil
-    ENV['COMPLETELY_SCRIPT_FUNCTION'] = nil
   end
 
   after  { system "rm -f completely.yaml" }
@@ -42,18 +40,6 @@ describe Commands::Test do
     it "tests against this completely file" do
       expect { subject.run ["test", "play co"] }
         .to output_approval('cli/test/comps-custom-config')
-    end
-  end
-
-  context "when COMPLETELY_SCRIPT_PATH and COMPLETELY_SCRIPT_FUNCTION are set" do
-    before do
-      ENV['COMPLETELY_SCRIPT_PATH'] = "/usr/share/bash-completion/completions/apt"
-      ENV['COMPLETELY_SCRIPT_FUNCTION'] = "_apt"
-    end
-
-    it "tests against this script" do
-      expect { subject.run ["test", "apt up"] }
-        .to output_approval('cli/test/comps-apt')
     end
   end
 
