@@ -1,6 +1,19 @@
 Change Log
 ========================================
 
+v0.4.0 - 2022-05-21
+----------------------------------------
+
+- Improve template
+- Refactor CLI commands
+- Add Tester class for testing any completions script
+- Add tester CLI command
+- Add support for middle wildcard for --flag args completions
+- Add COMPLETELY_DEBUG environment setting
+- Allow setting the CONFIG_PATH argument via the COMPLETELY_CONFIG_PATH environment variable
+- Allow setting the SCRIPT_PATH argument via the COMPLETELY_SCRIPT_PATH environment variable
+
+
 v0.3.1 - 2022-02-20
 ----------------------------------------
 
