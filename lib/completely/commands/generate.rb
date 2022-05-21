@@ -13,6 +13,8 @@ module Completely
 
       param_config_path
       param "OUTPUT_PATH", "Path to the output bash script. When not provided, the name of the input file will be used with a .bash extension"
+
+      environment_config_path
       environment_debug
 
       def run

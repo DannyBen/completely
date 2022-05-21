@@ -10,6 +10,7 @@ module Completely
 
       option_function
       param_config_path
+      environment_config_path
       environment_debug
 
       def run

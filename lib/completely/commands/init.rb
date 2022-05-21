@@ -9,6 +9,7 @@ module Completely
       usage "completely init (-h|--help)"
 
       param_config_path
+      environment_config_path
 
       def run
         if File.exist? config_path

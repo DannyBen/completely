@@ -41,7 +41,7 @@ describe Completions do
       end
     end
 
-    context "when COMPLETELY_DEBUG is set", :focus do
+    context "when COMPLETELY_DEBUG is set" do
       before { ENV['COMPLETELY_DEBUG'] = '1' }
       after  { ENV['COMPLETELY_DEBUG'] = nil }
 
@@ -59,7 +59,7 @@ describe Completions do
     end
   end
 
-  describe '#tester', :focus do
+  describe '#tester' do
     it "returns a Tester object" do
       expect(subject.tester).to be_a Tester
     end

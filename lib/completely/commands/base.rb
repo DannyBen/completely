@@ -6,11 +6,15 @@ module Completely
 
       class << self
         def param_config_path
-          param "CONFIG_PATH", "Path to the YAML configuration file [default: completely.yaml]"
+          param "CONFIG_PATH", "Path to the YAML configuration file [default: completely.yaml]\nCan also be set by an environment variable"
         end
 
         def option_function
           option "-f --function NAME", "Modify the name of the function in the generated script"
+        end
+
+        def environment_config_path
+          environment "COMPLETELY_CONFIG_PATH", "Path to a completely configuration file [default: completely.yaml]"
         end
 
         def environment_debug

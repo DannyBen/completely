@@ -25,6 +25,26 @@ describe Commands::Generate do
     end
   end
 
+  context "with COMPLETELY_CONFIG_PATH env var" do
+    before do
+      reset_tmp_dir
+      system "cp lib/completely/templates/sample.yaml spec/tmp/hello.yml"
+      system "rm -f completely.yaml"
+      ENV['COMPLETELY_CONFIG_PATH'] = 'spec/tmp/hello.yml'
+    end
+
+    after do
+      ENV['COMPLETELY_CONFIG_PATH'] = nil
+      system "rm -f hello.bash"
+    end
+
+    it "generates the bash script to completely.bash" do
+      expect { subject.run %w[generate] }.to output_approval('cli/generate/custom-path-env')
+      expect(File.read "hello.bash").to match_approval('cli/generated-script')
+    end
+  end
+
+
   context "with CONFIG_PATH OUTPUT_PATH" do
     before { reset_tmp_dir }
 
