@@ -33,7 +33,11 @@ module Completely
       end
 
       def config_path
-        args['CONFIG_PATH'] || ENV['COMPLETELY_CONFIG_PATH'] || 'completely.yaml'
+        @config_path ||= args['CONFIG_PATH'] || ENV['COMPLETELY_CONFIG_PATH'] || 'completely.yaml'
+      end
+
+      def script_path
+        @script_path ||= args['SCRIPT_PATH'] || ENV['COMPLETELY_SCRIPT_PATH'] || "#{config_basename}.bash"
       end
 
       def config_basename

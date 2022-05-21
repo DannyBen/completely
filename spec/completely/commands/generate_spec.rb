@@ -44,8 +44,7 @@ describe Commands::Generate do
     end
   end
 
-
-  context "with CONFIG_PATH OUTPUT_PATH" do
+  context "with CONFIG_PATH SCRIPT_PATH" do
     before { reset_tmp_dir }
 
     it "generates the bash script to the specified path" do
