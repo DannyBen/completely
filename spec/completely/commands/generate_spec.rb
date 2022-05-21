@@ -38,9 +38,27 @@ describe Commands::Generate do
       system "rm -f hello.bash"
     end
 
-    it "generates the bash script to completely.bash" do
+    it "generates the bash script to hello.bash" do
       expect { subject.run %w[generate] }.to output_approval('cli/generate/custom-path-env')
       expect(File.read "hello.bash").to match_approval('cli/generated-script')
+    end
+  end
+
+  context "with COMPLETELY_SCRIPT_PATH env var" do
+    let(:outfile) { 'spec/tmp/tada.bash' }
+
+    before do
+      reset_tmp_dir
+      ENV['COMPLETELY_SCRIPT_PATH'] = outfile
+    end
+
+    after do
+      ENV['COMPLETELY_SCRIPT_PATH'] = nil
+    end
+
+    it "generates the bash script to the requested path" do
+      expect { subject.run %w[generate] }.to output_approval('cli/generate/custom-path-env2')
+      expect(File.read outfile).to match_approval('cli/generated-script')
     end
   end
 
