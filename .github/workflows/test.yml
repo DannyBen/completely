@@ -22,8 +22,8 @@ jobs:
         ruby-version: '${{ matrix.ruby }}'
         bundler-cache: true
 
-    - name: Pull dannyben/zsh image
-      run: docker pull dannyben/zsh
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
 
     - name: Run tests
       run: bundle exec rspec
