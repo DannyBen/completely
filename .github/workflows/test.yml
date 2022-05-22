@@ -22,8 +22,5 @@ jobs:
         ruby-version: '${{ matrix.ruby }}'
         bundler-cache: true
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-
     - name: Run tests
       run: bundle exec rspec

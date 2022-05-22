@@ -13,7 +13,9 @@ describe "zsh compatibility" do
   end
 
   subject do
-    `docker run --rm -it -v $PWD/spec/tmp:/app dannyben/zsh #{shell} /app/test.sh`.strip
+    Dir.chdir 'spec/tmp' do
+      `#{shell} test.sh`.strip
+    end
   end
 
   describe "completions script and test script" do
