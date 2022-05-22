@@ -30,6 +30,20 @@ describe Commands::Test do
     end
   end
 
+  context "with --keep COMPLINE" do
+    before { system "rm -f #{filename}" }
+    after { system "rm -f #{filename}" }
+
+    let(:filename) { 'completely-tester.sh' }
+
+    it "copies the test script to the current directory" do
+      expect { subject.run ["test", "--keep", "mygit status --"] }
+        .to output_approval('cli/test/comps-default-keep')
+
+      expect(File.read filename).to match_approval('cli/test/completely-tester.sh')
+    end
+  end
+
   context "when COMPLETELY_CONFIG_PATH is set" do
     before do
       reset_tmp_dir
@@ -43,7 +57,7 @@ describe Commands::Test do
     end
   end
 
-  context "when there is no compeltely.yaml or any environment instructions" do
+  context "when there is no compeltely.yaml or COMPLETELY_CONFIG_PATH" do
     before { system "rm -f completely.yaml" }
     
     it "fails gracefully" do
