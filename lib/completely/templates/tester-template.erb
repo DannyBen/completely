@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
+if [[ -n $ZSH_VERSION ]]; then
+  autoload -U +X bashcompinit && bashcompinit
+  autoload -U +X compinit && compinit
+fi
+
+# === COMPLETION SCRIPT START ===
+
 <%= script || %Q[source "#{absolute_script_path}"] %>
 
-# END OF COMPLETION SCRIPT
+# === COMPLETION SCRIPT END ===
 
 COMP_WORDS=( <%= compline %> )
 COMP_LINE="<%= compline %>"

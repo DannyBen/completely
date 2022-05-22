@@ -22,5 +22,8 @@ jobs:
         ruby-version: '${{ matrix.ruby }}'
         bundler-cache: true
 
+    - name: Install zsh
+      run: sudo apt install -y zsh
+
     - name: Run tests
       run: bundle exec rspec
