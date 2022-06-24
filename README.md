@@ -250,6 +250,17 @@ puts completions.wrapper_function "custom_function_name"
 p completions.tester.test "mygit status "
 ```
 
+## Completions in ZSH
+
+If you are using Oh-My-Zsh, bash completions should already be enabled,
+otherwise, you should enable completion by adding this to your `~/.zshrc`
+(if is it not already there):
+
+```bash
+# Load completion functions
+autoload -Uz +X compinit && compinit
+autoload -Uz +X bashcompinit && bashcompinit
+```
 
 ## Contributing / Support
 
