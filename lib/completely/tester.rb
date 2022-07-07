@@ -14,7 +14,7 @@ module Completely
         f << tester_script(compline)
         f.flush
         `bash #{f.path}`
-      end.split " "
+      end.split "\n"
     end
 
     def tester_script(compline)

@@ -48,4 +48,7 @@ COMP_POINT=${#COMP_LINE}
 COMP_CWORD=2
 
 _mygit_completions
-echo "${COMPREPLY[*]}"
+for suggestion in "${COMPREPLY[@]}"; do
+  echo "$suggestion"
+done
+

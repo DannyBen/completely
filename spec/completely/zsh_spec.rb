@@ -20,14 +20,14 @@ describe "zsh compatibility" do
 
   describe "completions script and test script" do
     it "returns completions without erroring" do
-      expect(subject).to eq "somedir --help --force"
+      expect(subject).to eq "somedir\n--help\n--force"
     end
 
     context "on bash" do
       let(:shell) { 'bash' }
       
       it "returns the same output" do
-        expect(subject).to eq "somedir --help --force"
+        expect(subject).to eq "somedir\n--help\n--force"
       end
     end
   end
