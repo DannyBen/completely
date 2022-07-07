@@ -10,11 +10,11 @@ _completely_completions() {
 
   case "$compline" in
     'generate'*)
-      COMPREPLY=($(compgen -A directory -W "--help --force" -- "$cur"))
+      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A directory -W "--help --force" -- "$cur" )
       ;;
 
     'init'*)
-      COMPREPLY=($(compgen -W "--help" -- "$cur"))
+      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help" -- "$cur" )
       ;;
 
   esac
