@@ -16,4 +16,7 @@ COMP_POINT=${#COMP_LINE}
 COMP_CWORD=<%= cword %>
 
 <%= function_name %>
-echo "${COMPREPLY[*]}"
+for suggestion in "${COMPREPLY[@]}"; do
+  echo "$suggestion"
+done
+

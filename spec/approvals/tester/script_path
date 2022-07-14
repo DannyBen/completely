@@ -16,4 +16,7 @@ COMP_POINT=${#COMP_LINE}
 COMP_CWORD=1
 
 _cli_completions
-echo "${COMPREPLY[*]}"
+for suggestion in "${COMPREPLY[@]}"; do
+  echo "$suggestion"
+done
+
