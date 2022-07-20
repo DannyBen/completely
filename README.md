@@ -32,7 +32,13 @@ or with homebrew:
 ```bash
 $ brew install brew-gem
 $ brew gem install completely
-````
+```
+
+or with Docker:
+
+```bash
+alias completely='docker run --rm -it --user $(id -u):$(id -g) --volume "$PWD:/app" dannyben/completely'
+```
 
 ## Using the `completely` command line
 
