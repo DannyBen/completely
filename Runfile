@@ -9,6 +9,7 @@ version Completely::VERSION
 
 RunfileTasks::RubyGems.all 'completely'
 RunfileTasks::Testing.rspec
+RunfileTasks::Docker.all 'dannyben/completely', Completely::VERSION
 
 help   "Run interactive console"
 action :console, :c do
