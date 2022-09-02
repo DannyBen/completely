@@ -19,7 +19,7 @@
 % patterns.each do |pattern|
 % next if pattern.empty?
     <%= pattern.case_string %>)
-      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen <%= pattern.compgen %> -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen <%= pattern.compgen %> -- "$cur" )
       ;;
 
 % end

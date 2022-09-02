@@ -18,19 +18,19 @@ _mygit_completions() {
 
   case "$compline" in
     'status'*)
-      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help --verbose --branch $(git branch 2> /dev/null)" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help --verbose --branch $(git branch 2> /dev/null)" -- "$cur" )
       ;;
 
     'commit'*)
-      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A file -W "--help --message --all -a --quiet -q" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A file -W "--help --message --all -a --quiet -q" -- "$cur" )
       ;;
 
     'init'*)
-      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A directory -W "--bare" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A directory -W "--bare" -- "$cur" )
       ;;
 
     *)
-      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help --version status init commit" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help --version status init commit" -- "$cur" )
       ;;
 
   esac
