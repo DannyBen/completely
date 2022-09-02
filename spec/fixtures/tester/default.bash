@@ -10,19 +10,19 @@ _cli_completions() {
 
   case "$compline" in
     'command childcommand'*)
-      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--quiet --verbose -q -v" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--quiet --verbose -q -v" -- "$cur" )
       ;;
 
     'command subcommand'*)
-      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--force --quiet" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--force --quiet" -- "$cur" )
       ;;
 
     'command'*)
-      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "subcommand childcommand" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "subcommand childcommand" -- "$cur" )
       ;;
 
     *)
-      while read; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help --version command conquer" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help --version command conquer" -- "$cur" )
       ;;
 
   esac
