@@ -24,7 +24,7 @@ describe Tester do
     end
   end
 
-  describe '#test', :focus do
+  describe '#test' do
     it "returns an array with completions" do
       expect(subject.test compline).to eq ["command", "conquer"]
     end

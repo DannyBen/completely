@@ -6,7 +6,8 @@
 
 _mygit_completions() {
   local cur=${COMP_WORDS[COMP_CWORD]}
-  local compline="${COMP_WORDS[@]:1:$COMP_CWORD-1}"
+  local compwords=("${COMP_WORDS[@]:1:$COMP_CWORD-1}")
+  local compline="${compwords[*]}"
 
   case "$compline" in
     'status'*)

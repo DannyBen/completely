@@ -16,6 +16,11 @@ describe Commands::Generate do
       expect { subject.run %w[generate] }.to output_approval('cli/generate/no-args')
       expect(File.read "completely.bash").to match_approval('cli/generated-script')
     end
+
+    it "generates a shellcheck compliant script" do
+      expect { subject.run %w[generate] }.to output_approval('cli/generate/no-args')
+      expect(`shellcheck completely.bash 2>&1`).to be_empty
+    end
   end
 
   context "with CONFIG_PATH" do
