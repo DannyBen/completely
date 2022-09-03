@@ -9,7 +9,10 @@ ftp:
   expected: [download]
 
 - compline: "ftp download "
-  expected: [--help, --override, another-dir, dummy-dir, ftp.yaml, gradual.yaml]
+  expected: [another-dir, dir with spaces, dummy-dir, file with spaces.txt, ftp.yaml, gradual.yaml]
+
+- compline: "ftp download -"
+  expected: [--help, --override]
 
 - compline: "ftp upload "
   expected: [another-dir, dir with spaces, dummy-dir]
