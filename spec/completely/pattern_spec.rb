@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe Pattern do
-  subject { described_class.new text, completions }
+  subject { described_class.new text, completions, function_name }
   let(:text) { "git commit" }
   let(:completions) { %w[--message --help <file> <user>] }
+  let(:function_name) { "_filter" }
 
   describe '#length' do
     it "returns the string length of the pattern text" do
@@ -73,7 +74,7 @@ describe Pattern do
 
   describe '#compgen' do
     it "returns a line of compgen arguments" do
-      expect(subject.compgen).to eq %q[-A file -A user -W "--message --help"]
+      expect(subject.compgen).to eq %q[-A file -A user -W "$(_filter "--message --help")"]
     end
 
     context "when there are no words for -W" do
@@ -88,7 +89,7 @@ describe Pattern do
       let(:completions) { %w[--message --help] }
 
       it "omits the -A arguments" do
-        expect(subject.compgen).to eq %q[-W "--message --help"]
+        expect(subject.compgen).to eq %q[-W "$(_filter "--message --help")"]
       end
     end
 

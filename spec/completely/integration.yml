@@ -1,24 +1,29 @@
 ftp:
 - compline: "ftp "
-  expected: [--help, --version, download, list, upload]
+  expected: [download, list, upload]
+
+- compline: "ftp -"
+  expected: [--help, --version]
 
 - compline: "ftp downl"
   expected: [download]
 
 - compline: "ftp download "
   expected: [--help, --override, another-dir, dummy-dir, ftp.yaml, gradual.yaml]
-  expected: [--help, --override, another-dir, dir with spaces, dummy-dir, file with spaces.txt, ftp.yaml, gradual.yaml]
 
 - compline: "ftp upload "
-  expected: [--confirm, --help, another-dir, dir with spaces, dummy-dir]
+  expected: [another-dir, dir with spaces, dummy-dir]
 
-- compline: "ftp connect ssh "
+- compline: "ftp upload -"
+  expected: [--confirm, --help]
+
+- compline: "ftp connect ssh -"
   expected: [--keyfile]
 
 - compline: "ftp connect --protocol "
   expected: [scp, sftp]
 
-- compline: "/anything/goes/ftp list "
+- compline: "/anything/goes/ftp list -"
   expected: [--help, --short]
 
 gradual:
@@ -35,7 +40,10 @@ gradual:
   expected: [subcommand]
 
 - compline: "cli command subcommand "
-  expected: [--color, --force, -c, help]
+  expected: [help]
+
+- compline: "cli command subcommand -"
+  expected: [--color, --force, -c]
 
 - compline: "cli command subcommand --"
   expected: [--color, --force]
