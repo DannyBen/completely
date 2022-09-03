@@ -19,7 +19,7 @@ describe Commands::Generate do
 
     it "generates a shellcheck compliant script" do
       expect { subject.run %w[generate] }.to output_approval('cli/generate/no-args')
-      expect(`shellcheck completely.bash`).to be_empty
+      expect(`shellcheck completely.bash 2>&1`).to be_empty
     end
   end
 
