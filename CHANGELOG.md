@@ -1,6 +1,15 @@
 Change Log
 ========================================
 
+v0.5.0 - 2022-09-04
+----------------------------------------
+
+- Add docker release
+- Fix shellcheck SC2162 in the generated script
+- Fix shellcheck SC2124 in the generated script
+- Hide flag completion unless input ends with a hyphen
+
+
 v0.4.3 - 2022-07-14
 ----------------------------------------
 
