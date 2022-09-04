@@ -4,6 +4,24 @@
 # completely (https://github.com/dannyben/completely)
 # Modifying it manually is not recommended
 
+_cli_completions_filter() {
+  local words="$1"
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  local result=()
+
+  if [[ "${cur:0:1}" == "-" ]]; then
+    echo "$words"
+  
+  else
+    for word in $words; do
+      [[ "${word:0:1}" != "-" ]] && result+=("$word")
+    done
+
+    echo "${result[*]}"
+
+  fi
+}
+
 _cli_completions() {
   local cur=${COMP_WORDS[COMP_CWORD]}
   local compwords=("${COMP_WORDS[@]:1:$COMP_CWORD-1}")
@@ -11,19 +29,19 @@ _cli_completions() {
 
   case "$compline" in
     'command childcommand'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--quiet --verbose -q -v" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_cli_completions_filter "--quiet --verbose -q -v")" -- "$cur" )
       ;;
 
     'command subcommand'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--force --quiet" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_cli_completions_filter "--force --quiet")" -- "$cur" )
       ;;
 
     'command'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "subcommand childcommand" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_cli_completions_filter "subcommand childcommand")" -- "$cur" )
       ;;
 
     *)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help --version command conquer" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_cli_completions_filter "--help --version command conquer")" -- "$cur" )
       ;;
 
   esac

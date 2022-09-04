@@ -54,7 +54,7 @@ module Completely
 
     def patterns!
       config.map do |text, completions|
-        Pattern.new text, completions
+        Pattern.new text, completions, pattern_function_name
       end.sort_by { |pattern| -pattern.length }
     end
 
@@ -72,6 +72,10 @@ module Completely
 
     def function_name
       @function_name ||= "_#{command}_completions"
+    end
+
+    def pattern_function_name
+      @pattern_function_name ||= "#{function_name}_filter"
     end
 
     def pattern_prefixes

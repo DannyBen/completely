@@ -4,6 +4,24 @@
 # completely (https://github.com/dannyben/completely)
 # Modifying it manually is not recommended
 
+<%= function_name %>_filter() {
+  local words="$1"
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  local result=()
+
+  if [[ "${cur:0:1}" == "-" ]]; then
+    echo "$words"
+  
+  else
+    for word in $words; do
+      [[ "${word:0:1}" != "-" ]] && result+=("$word")
+    done
+
+    echo "${result[*]}"
+
+  fi
+}
+
 <%= function_name %>() {
   local cur=${COMP_WORDS[COMP_CWORD]}
   local compwords=("${COMP_WORDS[@]:1:$COMP_CWORD-1}")

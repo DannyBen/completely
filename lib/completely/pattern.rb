@@ -1,10 +1,11 @@
 module Completely
   class Pattern
-    attr_reader :text, :completions
+    attr_reader :text, :completions, :function_name
 
-    def initialize(text, completions)
+    def initialize(text, completions, function_name)
       @text = text
       @completions = completions || []
+      @function_name = function_name
     end
 
     def length
@@ -53,7 +54,7 @@ module Completely
     def compgen!
       result = []
       result << %Q[#{actions.join ' '}] if actions.any?
-      result << %Q[-W "#{words.join ' '}"] if words.any?
+      result << %Q[-W "$(#{function_name} "#{words.join ' '}")"] if words.any?
       result.any? ? result.join(' ') : nil
     end
   end

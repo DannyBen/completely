@@ -4,6 +4,24 @@
 # completely (https://github.com/dannyben/completely)
 # Modifying it manually is not recommended
 
+_mycomps_filter() {
+  local words="$1"
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  local result=()
+
+  if [[ "${cur:0:1}" == "-" ]]; then
+    echo "$words"
+  
+  else
+    for word in $words; do
+      [[ "${word:0:1}" != "-" ]] && result+=("$word")
+    done
+
+    echo "${result[*]}"
+
+  fi
+}
+
 _mycomps() {
   local cur=${COMP_WORDS[COMP_CWORD]}
   local compwords=("${COMP_WORDS[@]:1:$COMP_CWORD-1}")
@@ -11,19 +29,19 @@ _mycomps() {
 
   case "$compline" in
     'status'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help --verbose --branch $(git branch 2> /dev/null)" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_mycomps_filter "--help --verbose --branch $(git branch 2> /dev/null)")" -- "$cur" )
       ;;
 
     'commit'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A file -W "--help --message --all -a --quiet -q" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A file -W "$(_mycomps_filter "--help --message --all -a --quiet -q")" -- "$cur" )
       ;;
 
     'init'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A directory -W "--bare" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A directory -W "$(_mycomps_filter "--bare")" -- "$cur" )
       ;;
 
     *)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "--help --version status init commit" -- "$cur" )
+      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_mycomps_filter "--help --version status init commit")" -- "$cur" )
       ;;
 
   esac

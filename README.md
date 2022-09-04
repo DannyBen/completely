@@ -97,6 +97,9 @@ Each pattern in this configuration file will be checked against the user's
 input, and if the input **starts with** a matching pattern, the list that 
 follows it will be suggested as completions.
 
+Note that the suggested completions will not show flags (string that start with 
+a hyphen `-`) unless the input ends with a hyphen.
+
 To generate the bash script, simply run:
 
 ```bash
