@@ -5,12 +5,14 @@ module Completely
   class Tester
     attr_reader :script, :script_path, :function_name, :cword, :compline
 
-    def initialize(script: nil, script_path: nil, function_name: )
-      @script, @script_path, @function_name = script, script_path, function_name
+    def initialize(function_name:, script: nil, script_path: nil)
+      @script = script
+      @script_path = script_path
+      @function_name = function_name
     end
 
     def test(compline)
-      Tempfile.create "completely-tester" do |f|
+      Tempfile.create 'completely-tester' do |f|
         f << tester_script(compline)
         f.flush
         `bash #{f.path}`
@@ -26,23 +28,20 @@ module Completely
 
     def set_compline_vars(compline)
       @compline = compline
-      @cword = compline.split(' ').size - 1
+      @cword = compline.split.size - 1
       @cword += 1 if compline.end_with? ' '
     end
 
     def absolute_script_path
-      @absolute_script_path ||= begin
-        script_path ? File.expand_path(script_path) : nil
-      end
+      @absolute_script_path ||= script_path ? File.expand_path(script_path) : nil
     end
 
     def template_path
-      @template_path ||= File.expand_path "templates/tester-template.erb", __dir__
+      @template_path ||= File.expand_path 'templates/tester-template.erb', __dir__
     end
 
     def template
       @template ||= File.read template_path
     end
-
   end
 end

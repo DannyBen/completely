@@ -17,7 +17,7 @@ module Completely
     end
 
     def words
-      @words ||= completions.reject { |w| w =~ /^<.*>$/ }
+      @words ||= completions.grep_v(/^<.*>$/)
     end
 
     def actions
@@ -28,21 +28,21 @@ module Completely
     end
 
     def prefix
-      text.split(' ')[0]
+      text.split[0]
     end
 
     def case_string
       if text_without_prefix.empty?
-        "*"
-      elsif text_without_prefix.include? "*" 
-        %Q['#{text_without_prefix.gsub "*", "'*'"}']
+        '*'
+      elsif text_without_prefix.include? '*'
+        %['#{text_without_prefix.gsub '*', "'*'"}']
       else
-        %Q['#{text_without_prefix}'*]
+        "'#{text_without_prefix}'*"
       end
     end
 
     def text_without_prefix
-      @text_without_prefix ||= text.split(' ')[1..-1].join ' '
+      @text_without_prefix ||= text.split[1..].join ' '
     end
 
     def compgen
@@ -53,8 +53,8 @@ module Completely
 
     def compgen!
       result = []
-      result << %Q[#{actions.join ' '}] if actions.any?
-      result << %Q[-W "$(#{function_name} "#{words.join ' '}")"] if words.any?
+      result << actions.join(' ').to_s if actions.any?
+      result << %[-W "$(#{function_name} "#{words.join ' '}")"] if words.any?
       result.any? ? result.join(' ') : nil
     end
   end
