@@ -3,7 +3,7 @@ require 'erb'
 
 module Completely
   class Completions
-    attr_reader :config, :function_name
+    attr_reader :config
 
     class << self
       def load(config_path, function_name: nil)
@@ -14,13 +14,14 @@ module Completely
           data = YAML.load_file config_path
           # :nocov:
         end
-        
+
         new data, function_name: function_name
       end
     end
 
     def initialize(config, function_name: nil)
-      @config, @function_name = config, function_name
+      @config = config
+      @function_name = function_name
     end
 
     def patterns
@@ -36,11 +37,11 @@ module Completely
     end
 
     def wrapper_function(name = nil)
-      name ||= "send_completions"
+      name ||= 'send_completions'
 
       script_lines = script.split("\n").map do |line|
         clean_line = line.gsub("'") { "\\'" }
-        %Q[  echo $'#{clean_line}']
+        "  echo $'#{clean_line}'"
       end.join("\n")
 
       "#{name}() {\n#{script_lines}\n}"
@@ -53,13 +54,15 @@ module Completely
   private
 
     def patterns!
-      config.map do |text, completions|
+      result = config.map do |text, completions|
         Pattern.new text, completions, pattern_function_name
-      end.sort_by { |pattern| -pattern.length }
+      end
+
+      result.sort_by { |pattern| -pattern.length }
     end
 
     def template_path
-      @template_path ||= File.expand_path("templates/template.erb", __dir__)
+      @template_path ||= File.expand_path('templates/template.erb', __dir__)
     end
 
     def template
@@ -67,7 +70,7 @@ module Completely
     end
 
     def command
-      @command ||= config.keys.first.split(' ').first
+      @command ||= config.keys.first.split.first
     end
 
     def function_name
@@ -79,8 +82,7 @@ module Completely
     end
 
     def pattern_prefixes
-      patterns.map &:prefix
+      patterns.map(&:prefix)
     end
-
   end
 end

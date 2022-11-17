@@ -1,0 +1,19 @@
+inherit_gem:
+  rentacop: rentacop.yml
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'debug.rb'
+    - 'dev/**/*'
+
+# Allow `set_compline_vars` here, it is more readable
+Naming/AccessorMethodName:
+  Exclude:
+    - 'lib/completely/tester.rb'
+
+# Allow long lines in specs and commands
+Layout/LineLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'lib/completely/commands/**/*'

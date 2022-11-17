@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "generated script" do
+describe 'generated script' do
   subject { Completions.load "#{fixture}.yaml" }
 
   let(:response) do
