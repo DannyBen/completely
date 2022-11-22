@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Pattern do
   subject { described_class.new text, completions, function_name }
+
   let(:text) { 'git commit' }
   let(:completions) { %w[--message --help <file> <user>] }
   let(:function_name) { '_filter' }

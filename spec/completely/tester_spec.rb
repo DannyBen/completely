@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Tester do
   subject { described_class.new script_path: script_path, function_name: function_name }
+
   let(:function_name) { '_cli_completions' }
   let(:script_path) { "spec/fixtures/tester/#{fixture}.bash" }
   let(:fixture) { 'default' }
@@ -32,6 +33,7 @@ describe Tester do
 
   context 'with script instead of script_path' do
     subject { described_class.new script: script, function_name: function_name }
+
     let(:script) { '# some completion script' }
 
     describe '#tester_script' do

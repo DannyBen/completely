@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Commands::Test do
-  subject { CLI.runner }
+  subject { described_class.new }
 
   before do
     system 'cp lib/completely/templates/sample.yaml completely.yaml'
@@ -12,20 +12,20 @@ describe Commands::Test do
 
   context 'with --help' do
     it 'shows long usage' do
-      expect { subject.run %w[test --help] }.to output_approval('cli/test/help')
+      expect { subject.execute %w[test --help] }.to output_approval('cli/test/help')
     end
   end
 
   context 'without arguments' do
     it 'shows a short usage' do
-      expect { subject.run %w[test] }
+      expect { subject.execute %w[test] }
         .to output_approval('cli/test/usage')
     end
   end
 
   context 'with COMPLINE' do
     it 'prints completions' do
-      expect { subject.run ['test', 'mygit --'] }
+      expect { subject.execute ['test', 'mygit --'] }
         .to output_approval('cli/test/comps-default')
     end
   end
@@ -37,7 +37,7 @@ describe Commands::Test do
     let(:filename) { 'completely-tester.sh' }
 
     it 'copies the test script to the current directory' do
-      expect { subject.run ['test', '--keep', 'mygit status --'] }
+      expect { subject.execute ['test', '--keep', 'mygit status --'] }
         .to output_approval('cli/test/comps-default-keep')
 
       expect(File.read filename).to match_approval('cli/test/completely-tester.sh')
@@ -52,7 +52,7 @@ describe Commands::Test do
     end
 
     it 'tests against this completely file' do
-      expect { subject.run ['test', 'play co'] }
+      expect { subject.execute ['test', 'play co'] }
         .to output_approval('cli/test/comps-custom-config')
     end
   end
@@ -61,7 +61,7 @@ describe Commands::Test do
     before { system 'rm -f completely.yaml' }
 
     it 'fails gracefully' do
-      expect { subject.run ['test', 'mygit --'] }
+      expect { subject.execute ['test', 'mygit --'] }
         .to raise_approval('cli/test/error')
     end
   end

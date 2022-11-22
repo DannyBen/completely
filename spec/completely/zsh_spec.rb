@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe 'zsh compatibility' do
+  subject do
+    Dir.chdir 'spec/tmp' do
+      `#{shell} test.sh`.strip
+    end
+  end
+
   let(:completions) { Completely::Completions.load 'spec/fixtures/basic.yaml' }
   let(:words) { 'completely generate ' }
   let(:tester_script) { completions.tester.tester_script words }
@@ -12,18 +18,12 @@ describe 'zsh compatibility' do
     File.write 'spec/tmp/test.sh', tester_script
   end
 
-  subject do
-    Dir.chdir 'spec/tmp' do
-      `#{shell} test.sh`.strip
-    end
-  end
-
   describe 'completions script and test script' do
     it 'returns completions without erroring' do
       expect(subject).to eq 'somedir'
     end
 
-    context 'on bash' do
+    context 'when running on bash shell' do
       let(:shell) { 'bash' }
 
       it 'returns the same output' do
