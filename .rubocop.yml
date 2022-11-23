@@ -3,7 +3,9 @@ require:
   - rubocop-rspec
 
 inherit_gem:
-  rentacop: rentacop.yml
+  rentacop:
+    - rentacop.yml
+    - rspec.yml
 
 AllCops:
   TargetRubyVersion: 2.7
@@ -22,22 +24,3 @@ Layout/LineLength:
   Exclude:
     - 'spec/**/*'
     - 'lib/completely/commands/**/*'
-
-# Allow `before :all` and `after :all`
-RSpec/BeforeAfterAll:
-  Enabled: false
-
-# Allow unnamed `subject`
-RSpec/NamedSubject:
-  Enabled: false
-
-# Allow `describe` with arbitrary text in some cases
-RSpec/DescribeClass:
-  Exclude:
-    - spec/completely/bin_spec.rb
-    - spec/completely/integration_spec.rb
-    - spec/completely/zsh_spec.rb
-
-# Allow multiple expectations per block
-RSpec/MultipleExpectations:
-  Max: 3
