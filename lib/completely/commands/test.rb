@@ -22,10 +22,13 @@ module Completely
 
       def run
         puts tester.test(compline).join "\n"
-        return unless args['--keep']
 
-        File.write 'completely-tester.sh', tester_script
-        puts 'saved completely-tester.sh'
+        if args['--keep']
+          File.write 'completely-tester.sh', tester_script
+          puts 'saved completely-tester.sh'
+        end
+
+        syntax_warning unless completions.valid?
       end
 
     private

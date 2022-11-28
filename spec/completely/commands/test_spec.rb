@@ -65,4 +65,17 @@ describe Commands::Test do
         .to raise_approval('cli/test/error')
     end
   end
+
+  context 'with an invalid configuration' do
+    before do
+      reset_tmp_dir
+      File.write 'spec/tmp/in.yaml', { 'one' => %w[anything], 'two' => %w[something] }.to_yaml
+      ENV['COMPLETELY_CONFIG_PATH'] = 'spec/tmp/in.yaml'
+    end
+
+    it 'outputs a warning to STDERR' do
+      expect { subject.execute %w[test on] }
+        .to output_approval('cli/warning').to_stderr
+    end
+  end
 end
