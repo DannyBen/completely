@@ -28,21 +28,21 @@ module Completely
     end
 
     def prefix
-      text.split[0]
+      text.split(/ |\*/).first
     end
 
     def case_string
       if text_without_prefix.empty?
         '*'
       elsif text_without_prefix.include? '*'
-        %['#{text_without_prefix.gsub '*', "'*'"}']
+        text_without_prefix.gsub(/([^*]+)/, "'\\1'")
       else
         "'#{text_without_prefix}'*"
       end
     end
 
     def text_without_prefix
-      @text_without_prefix ||= text.split[1..].join ' '
+      @text_without_prefix ||= text[/^#{prefix}\s*(.*)/, 1]
     end
 
     def compgen

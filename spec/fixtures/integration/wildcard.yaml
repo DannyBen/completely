@@ -1,0 +1,17 @@
+wildcard:
+- --debug
+- --env
+- download
+- upload
+
+wildcard*--env:
+- prod
+- dev
+
+wildcard*download:
+- --confirm
+- --contest
+
+wildcard*download*--contest:
+- everything
+- nothing

@@ -9,7 +9,7 @@ ftp:
   expected: [download]
 
 - compline: "ftp download "
-  expected: [another-dir, dir with spaces, dummy-dir, file with spaces.txt, ftp.yaml, gradual.yaml]
+  expected: [another-dir, dir with spaces, dummy-dir, file with spaces.txt, ftp.yaml, gradual.yaml, wildcard.yaml]
 
 - compline: "ftp download -"
   expected: [--help, --override]
@@ -71,3 +71,26 @@ gradual:
 
 - compline: "cli command subcommand anything --color gr"
   expected: [gray, green]
+
+wildcard:
+- compline: "wildcard "
+  expected: [download, upload]
+
+- compline: "wildcard d"
+  expected: [download]
+
+- compline: "wildcard --"
+  expected: [--debug, --env]
+
+- compline: "wildcard download --"
+  expected: [--confirm, --contest]
+
+- compline: "wildcard --env "
+  expected: [dev, prod]
+
+- compline: "wildcard --env prod download --contest "
+  expected: [everything, nothing]
+
+- compline: "wildcard download --contest "
+  expected: [everything, nothing]
+
