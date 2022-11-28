@@ -74,8 +74,7 @@ describe Commands::Test do
     end
 
     it 'outputs a warning to STDERR' do
-      expect { subject.execute %w[test on] }
-        .to output_approval('cli/warning').to_stderr
+      expect { subject.execute %w[test on] }.to output_approval('cli/warning').to_stderr
     end
   end
 end
