@@ -1,6 +1,14 @@
 Change Log
 ========================================
 
+v0.5.1 - 2022-11-28
+----------------------------------------
+
+- Refactor with rubocop
+- Fix broken script when wildcards follow the first word
+- Show warning when running the test command on an invalid file
+
+
 v0.5.0 - 2022-09-04
 ----------------------------------------
 
