@@ -45,7 +45,7 @@ describe Pattern do
     end
 
     context 'when the pattern includes a * right after the first word' do
-      let(:text) { 'git*--checkout'}
+      let(:text) { 'git*--checkout' }
 
       it 'returns the first word of the pattern' do
         expect(subject.prefix).to eq 'git'
@@ -53,7 +53,7 @@ describe Pattern do
     end
 
     context 'when the pattern includes a * anywhere else' do
-      let(:text) { 'git --checkout*something'}
+      let(:text) { 'git --checkout*something' }
 
       it 'returns the first word of the pattern' do
         expect(subject.prefix).to eq 'git'
@@ -89,7 +89,7 @@ describe Pattern do
     end
 
     context 'when the pattern includes a * right after the first word' do
-      let(:text) { 'git*--checkout'}
+      let(:text) { 'git*--checkout' }
 
       it 'returns all but the first word' do
         expect(subject.text_without_prefix).to eq '*--checkout'
@@ -97,13 +97,12 @@ describe Pattern do
     end
 
     context 'when the pattern includes a * anywhere else' do
-      let(:text) { 'git --checkout*something'}
+      let(:text) { 'git --checkout*something' }
 
       it 'returns all but the first word' do
         expect(subject.text_without_prefix).to eq '--checkout*something'
       end
     end
-
   end
 
   describe '#compgen' do
