@@ -2,3 +2,6 @@ $ mygit --<tab>
 --help
 --version
 
+$ mygit s<tab>
+status
+

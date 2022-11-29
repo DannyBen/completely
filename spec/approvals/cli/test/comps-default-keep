@@ -1,4 +1,6 @@
+$ mygit status --<tab>
 --help
 --verbose
 --branch
-saved completely-tester.sh
+
+Saved completely-tester-1.sh

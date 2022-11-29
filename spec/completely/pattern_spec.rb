@@ -77,7 +77,7 @@ describe Pattern do
     context 'when the pattern includes a wildcard' do
       let(:text) { 'git checkout*--branch' }
 
-      it 'returns the quoted pattern (excluding command name) with an unquoted wildcard and without a wildcard suffix' do
+      it 'returns the quoted pattern (excluding command name) with an unquoted wildcard, without a wildcard suffix' do
         expect(subject.case_string).to eq "'checkout'*'--branch'"
       end
     end
