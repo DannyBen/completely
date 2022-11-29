@@ -5,19 +5,26 @@ module Completely
     class Base < MisterBin::Command
       class << self
         def param_config_path
-          param 'CONFIG_PATH', "Path to the YAML configuration file [default: completely.yaml]\nCan also be set by an environment variable"
+          param 'CONFIG_PATH', <<~USAGE
+            Path to the YAML configuration file [default: completely.yaml].
+            Can also be set by an environment variable.
+          USAGE
         end
 
         def option_function
-          option '-f --function NAME', 'Modify the name of the function in the generated script'
+          option '-f --function NAME',
+            'Modify the name of the function in the generated script.'
         end
 
         def environment_config_path
-          environment 'COMPLETELY_CONFIG_PATH', 'Path to a completely configuration file [default: completely.yaml]'
+          environment 'COMPLETELY_CONFIG_PATH',
+            'Path to a completely configuration file [default: completely.yaml].'
         end
 
         def environment_debug
-          environment 'COMPLETELY_DEBUG', 'It not empty, the generated script will include an additional debugging snippet that outputs the compline and current word to a text file when a completion is requested'
+          environment 'COMPLETELY_DEBUG', 'If not empty, the generated script will include ' \
+            'an additional debugging snippet that outputs the compline and current word to ' \
+            'a text file when a completion is requested.'
         end
       end
 

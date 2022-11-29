@@ -6,33 +6,34 @@ Usage:
 
 Options:
   -f --function NAME
-    Modify the name of the function in the generated script
+    Modify the name of the function in the generated script.
 
   -w --wrap NAME
     Wrap the completion script inside a function that echos the script. This is
-    useful if you wish to embed it directly in your script
+    useful if you wish to embed it directly in your script.
 
   -h --help
     Show this help
 
 Parameters:
   CONFIG_PATH
-    Path to the YAML configuration file [default: completely.yaml]
-    Can also be set by an environment variable
+    Path to the YAML configuration file [default: completely.yaml].
+    Can also be set by an environment variable.
 
   OUTPUT_PATH
-    Path to the output bash script. When not provided, the name of the input
-    file will be used with a .bash extension
-    Can also be set by an environment variable
+    Path to the output bash script.
+    When not provided, the name of the input file will be used with a .bash
+    extension.
+    Can also be set by an environment variable.
 
 Environment Variables:
   COMPLETELY_CONFIG_PATH
-    Path to a completely configuration file [default: completely.yaml]
+    Path to a completely configuration file [default: completely.yaml].
 
   COMPLETELY_OUTPUT_PATH
-    Path to the output bash script
+    Path to the output bash script.
 
   COMPLETELY_DEBUG
-    It not empty, the generated script will include an additional debugging
+    If not empty, the generated script will include an additional debugging
     snippet that outputs the compline and current word to a text file when a
-    completion is requested
+    completion is requested.

@@ -34,13 +34,35 @@ describe Commands::Test do
     before { system "rm -f #{filename}" }
     after { system "rm -f #{filename}" }
 
-    let(:filename) { 'completely-tester.sh' }
+    let(:filename) { 'completely-tester-1.sh' }
 
     it 'copies the test script to the current directory' do
       expect { subject.execute ['test', '--keep', 'mygit status --'] }
         .to output_approval('cli/test/comps-default-keep')
 
       expect(File.read filename).to match_approval('cli/test/completely-tester.sh')
+    end
+  end
+
+  context 'with COMPLINE COMPLINE' do
+    it 'prints multiple completions' do
+      expect { subject.execute ['test', 'mygit --', 'mygit s'] }
+        .to output_approval('cli/test/comps-multi')
+    end
+  end
+
+  context 'with --keep COMPLINE COMPLINE' do
+    before { filenames.each { |filename| system "rm -f #{filename}" } }
+    after { filenames.each { |filename| system "rm -f #{filename}" } }
+
+    let(:filenames) { ['completely-tester-1.sh', 'completely-tester-2.sh'] }
+
+    it 'copies the test scripts to the current directory' do
+      expect { subject.execute ['test', '--keep', 'mygit --', 'mygit st'] }
+        .to output_approval('cli/test/comps-multi-keep')
+
+      expect(File.read filenames[0]).to match_approval('cli/test/completely-tester-1.sh')
+      expect(File.read filenames[1]).to match_approval('cli/test/completely-tester-2.sh')
     end
   end
 

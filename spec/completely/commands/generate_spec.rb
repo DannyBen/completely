@@ -72,7 +72,8 @@ describe Commands::Generate do
     before { reset_tmp_dir }
 
     it 'generates the bash script to the specified path' do
-      expect { subject.execute %w[generate completely.yaml spec/tmp/out.bash] }.to output_approval('cli/generate/custom-out-path')
+      expect { subject.execute %w[generate completely.yaml spec/tmp/out.bash] }
+        .to output_approval('cli/generate/custom-out-path')
       expect(File.read 'spec/tmp/out.bash').to match_approval('cli/generated-script')
     end
   end

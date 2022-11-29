@@ -10,9 +10,9 @@ Options:
 
 Parameters:
   CONFIG_PATH
-    Path to the YAML configuration file [default: completely.yaml]
-    Can also be set by an environment variable
+    Path to the YAML configuration file [default: completely.yaml].
+    Can also be set by an environment variable.
 
 Environment Variables:
   COMPLETELY_CONFIG_PATH
-    Path to a completely configuration file [default: completely.yaml]
+    Path to a completely configuration file [default: completely.yaml].

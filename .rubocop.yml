@@ -18,9 +18,3 @@ AllCops:
 Naming/AccessorMethodName:
   Exclude:
     - 'lib/completely/tester.rb'
-
-# Allow long lines in specs and commands
-Layout/LineLength:
-  Exclude:
-    - 'spec/**/*'
-    - 'lib/completely/commands/**/*'

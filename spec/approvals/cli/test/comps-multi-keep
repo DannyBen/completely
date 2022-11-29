@@ -1,0 +1,9 @@
+$ mygit --<tab>
+--help
+--version
+
+Saved completely-tester-1.sh
+$ mygit st<tab>
+status
+
+Saved completely-tester-2.sh
