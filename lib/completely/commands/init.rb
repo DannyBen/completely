@@ -15,7 +15,7 @@ module Completely
         raise "File already exists: #{config_path}" if File.exist? config_path
 
         File.write config_path, sample
-        say "Saved !txtpur!#{config_path}"
+        say "Saved m`#{config_path}`"
       end
 
     private

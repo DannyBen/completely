@@ -27,7 +27,7 @@ module Completely
         wrap = args['--wrap']
         output = wrap ? wrapper_function(wrap) : script
         File.write output_path, output
-        say "Saved !txtpur!#{output_path}"
+        say "Saved m`#{output_path}`"
         syntax_warning unless completions.valid?
       end
 
