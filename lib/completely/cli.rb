@@ -10,7 +10,7 @@ module Completely
     def self.runner
       runner = MisterBin::Runner.new version: Completely::VERSION,
         header: 'Completely - Bash Completions Generator',
-        footer: 'Run !txtpur!completely COMMAND --help!txtrst! for more information'
+        footer: 'Run m`completely COMMAND --help` for more information'
 
       runner.route 'init',      to: Commands::Init
       runner.route 'preview',   to: Commands::Preview

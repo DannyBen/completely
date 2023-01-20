@@ -51,8 +51,8 @@ module Completely
       end
 
       def syntax_warning
-        say! "\n!txtred!WARNING:\nYour configuration is invalid."
-        say! '!txtred!All patterns must start with the same word.'
+        say! "\nr`WARNING:`\nr`Your configuration is invalid.`"
+        say! 'r`All patterns must start with the same word.`'
       end
     end
   end

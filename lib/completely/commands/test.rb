@@ -38,14 +38,14 @@ module Completely
 
       def show_compline(compline, filename: nil)
         filename ||= 'completely-tester.sh'
-        say "!txtblu!$ !txtgrn!#{compline}!txtrst!<tab>"
+        say "b`$` g`#{compline}`<tab>"
         puts tester.test(compline).join "\n"
         puts
 
         return unless keep
 
         File.write filename, tester_script(compline)
-        say "Saved !txtpur!#{filename}"
+        say "Saved m`#{filename}`"
       end
 
       def complines
