@@ -1,19 +1,9 @@
-require "runfile-tasks"
 require "byebug"
-require_relative 'lib/completely'
-require_relative 'lib/completely/version'
+require 'completely/version'
 
 title   "Completely Developer Toolbelt"
 summary "Runfile tasks for building the Completely gem"
 version Completely::VERSION
 
-RunfileTasks::RubyGems.all 'completely'
-RunfileTasks::Testing.rspec
-RunfileTasks::Docker.all 'dannyben/completely', Completely::VERSION
-
-help   "Run interactive console"
-action :console, :c do
-  exec "bundle exec bin/console"
-end
-
-require './debug.rb' if File.exist? 'debug.rb'
+import_gem 'runfile-tasks/gem', gemname: 'completely'
+import_gem 'runfile-tasks/docker', image: 'dannyben/completely', version: Completely::VERSION
