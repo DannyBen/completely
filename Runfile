@@ -5,5 +5,5 @@ title   "Completely Developer Toolbelt"
 summary "Runfile tasks for building the Completely gem"
 version Completely::VERSION
 
-import_gem 'runfile-tasks/gem', gemname: 'completely'
+import_gem 'runfile-tasks/gem'
 import_gem 'runfile-tasks/docker', image: 'dannyben/completely', version: Completely::VERSION
