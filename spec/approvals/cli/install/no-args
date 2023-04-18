@@ -1,0 +1,3 @@
+Usage:
+  completely install PROGRAM [SCRIPT_PATH --force]
+  completely install (-h|--help)

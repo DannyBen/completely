@@ -3,7 +3,21 @@ require 'completely/commands/base'
 module Completely
   module Commands
     class Install < Base
-      help 'Install a bash completion script'
+      TARGETS = %W[
+        /usr/share/bash-completion/completions
+        /usr/local/etc/bash_completion.d
+        #{Dir.home}/.bash_completion.d
+      ]
+
+      summary 'Install a bash completion script'
+
+      help <<~HELP
+        This command will copy the specified file to one of the following directories:
+
+        #{TARGETS.map { |c| "  - #{c}" }.join "\n"}
+
+        The target filename will be the program name, and sudo will be used if necessary.
+      HELP
 
       usage 'completely install PROGRAM [SCRIPT_PATH --force]'
       usage 'completely install (-h|--help)'
@@ -32,9 +46,13 @@ module Completely
           raise "Cannot find script: m`#{script_path}`"
         end
 
-        if File.exist?(target_path) && !args['--force']
+        if target_exist? && !args['--force']
           raise "File exists: m`#{target_path}`\nUse nb`--force` to overwrite"
         end
+      end
+
+      def target_exist?
+        File.exist? target_path
       end
 
       def command
@@ -59,13 +77,8 @@ module Completely
       end
 
       def completions_path!
-        candidates = %w[
-          /usr/share/bash-completion/completions
-          /usr/local/etc/bash_completion.d
-        ]
-
-        candidates.each do |candidate|
-          return candidate if Dir.exist? candidate
+        TARGETS.each do |tarnet|
+          return tarnet if Dir.exist? tarnet
         end
 
         nil
