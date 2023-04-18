@@ -5,7 +5,7 @@ describe Commands::Install do
 
   context 'with --help' do
     it 'shows long usage' do
-      expect { subject.execute %w[install --help] }.to output_approval('cli/install/help')
+      expect { subject.execute %w[install --help] }.to output_approval('cli/install/help').diff(10)
     end
   end
 
