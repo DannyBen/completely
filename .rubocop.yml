@@ -18,3 +18,8 @@ AllCops:
 Naming/AccessorMethodName:
   Exclude:
     - 'lib/completely/tester.rb'
+
+# The `bounce` method here is more readable without this cop
+Style/GuardClause:
+  Exclude:
+    - 'lib/completely/commands/install.rb'
