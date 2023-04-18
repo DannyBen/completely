@@ -19,20 +19,28 @@ module Completely
         The target filename will be the program name, and sudo will be used if necessary.
       HELP
 
-      usage 'completely install PROGRAM [SCRIPT_PATH --force]'
+      usage 'completely install PROGRAM [SCRIPT_PATH --force --dry]'
       usage 'completely install (-h|--help)'
 
       option '-f --force', 'Overwrite target file if it exists'
+      option '-d --dry', 'Show the installation command but do not run it'
 
       param 'PROGRAM', 'Name of the program the completions are for.'
       param 'SCRIPT_PATH', 'Path to the source bash script [default: completely.bash].'
 
       def run
         bounce
+
+        if args['--dry']
+          puts command.join ' '
+          return
+        end
+
         success = system(*command)
         raise "Failed running command:\nnb`#{command.join ' '}`" unless success
 
         say "Saved m`#{target_path}`"
+        say 'You may need to restart your session to test it'
       end
 
     private

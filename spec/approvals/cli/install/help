@@ -10,12 +10,15 @@ The target filename will be the program name, and sudo will be used if
 necessary.
 
 Usage:
-  completely install PROGRAM [SCRIPT_PATH --force]
+  completely install PROGRAM [SCRIPT_PATH --force --dry]
   completely install (-h|--help)
 
 Options:
   -f --force
     Overwrite target file if it exists
+
+  -d --dry
+    Show the installation command but do not run it
 
   -h --help
     Show this help
