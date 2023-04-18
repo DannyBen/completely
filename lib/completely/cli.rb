@@ -1,9 +1,10 @@
 require 'mister_bin'
-require 'completely/commands/init'
-require 'completely/commands/preview'
-require 'completely/commands/generate'
-require 'completely/commands/test'
 require 'completely/version'
+require 'completely/commands/generate'
+require 'completely/commands/init'
+require 'completely/commands/install'
+require 'completely/commands/preview'
+require 'completely/commands/test'
 
 module Completely
   class CLI
@@ -16,6 +17,7 @@ module Completely
       runner.route 'preview',   to: Commands::Preview
       runner.route 'generate',  to: Commands::Generate
       runner.route 'test',      to: Commands::Test
+      runner.route 'install',   to: Commands::Install
 
       runner
     end

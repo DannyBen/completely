@@ -1,0 +1,1 @@
+sudo cp README.md /usr/share/bash-completion/completions/completely-test

@@ -1,0 +1,31 @@
+Install a bash completion script
+
+This command will copy the specified file to one of the following directories:
+
+  - /usr/share/bash-completion/completions
+  - /usr/local/etc/bash_completion.d
+  - /home/vagrant/.bash_completion.d
+
+The target filename will be the program name, and sudo will be used if
+necessary.
+
+Usage:
+  completely install PROGRAM [SCRIPT_PATH --force --dry]
+  completely install (-h|--help)
+
+Options:
+  -f --force
+    Overwrite target file if it exists
+
+  -d --dry
+    Show the installation command but do not run it
+
+  -h --help
+    Show this help
+
+Parameters:
+  PROGRAM
+    Name of the program the completions are for.
+
+  SCRIPT_PATH
+    Path to the source bash script [default: completely.bash].
