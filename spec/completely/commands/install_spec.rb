@@ -21,7 +21,7 @@ describe Commands::Install do
     context 'when the default script is not found' do
       it 'raises an error' do
         expect { subject.execute %w[install completely-test] }
-          .to raise_approval('cli/install/missing-script')
+          .to raise_approval('cli/install/missing-script').diff(8)
       end
     end
 
@@ -78,7 +78,7 @@ describe Commands::Install do
     it 'raises an error' do
       allow(subject).to receive(:completions_path).and_return nil
       expect { subject.execute %w[install completely-test README.md] }
-        .to raise_approval('cli/install/no-completion-targets')
+        .to raise_approval('cli/install/no-completion-targets').diff(8)
     end
   end
 
@@ -86,7 +86,7 @@ describe Commands::Install do
     it 'raises an error' do
       allow(subject).to receive(:target_exist?).and_return true
       expect { subject.execute %w[install completely-test README.md] }
-        .to raise_approval('cli/install/target-exists')
+        .to raise_approval('cli/install/target-exists').diff(8)
     end
   end
 end
