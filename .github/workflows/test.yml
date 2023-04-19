@@ -32,7 +32,7 @@ jobs:
       run: bundle exec rspec
 
   json_schema:
-    name: Validate JSON schemas
+    name: Validate JSON schema
 
     runs-on: ubuntu-latest
 
@@ -60,5 +60,5 @@ jobs:
         ruby-version: '3.1'
         bundler-cache: true
 
-    - name: Run bashly schema
+    - name: Test schema
       run: bundle exec run schema
