@@ -8,7 +8,6 @@
 /Gemfile.lock
 /gems
 /spec/tmp
+/debug.runfile
 /tmp
-/toc.txt
-debug.rb
 out.sh
