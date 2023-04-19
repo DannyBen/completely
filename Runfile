@@ -3,7 +3,16 @@ require 'completely/version'
 
 title   "Completely Developer Toolbelt"
 summary "Runfile tasks for building the Completely gem"
-version Completely::VERSION
 
 import_gem 'runfile-tasks/gem'
 import_gem 'runfile-tasks/docker', image: 'dannyben/completely', version: Completely::VERSION
+
+help   'Test the completely JSON schema'
+action :schema do
+  file = 'lib/completely/templates/sample.yaml'
+  command = "check-jsonschema --schemafile schemas/completely.json #{file}"
+  say "\n$ check-jsonschema bb`#{file}`"
+  success = system command
+  exit 1 unless success
+end
+
