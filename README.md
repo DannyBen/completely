@@ -109,7 +109,7 @@ $ completely generate
 $ completely preview
 ```
 
-For more options (like setting input/output path), run
+For more options (like setting input/output path), run:
 
 ```bash
 $ completely --help
@@ -215,9 +215,15 @@ In order to enable the completions, simply source the generated script:
 $ source completely.bash
 ```
 
-In order to load these completions on startup, you may want to place them in 
-the completions directory of your operating system, which can be either of
-these (whichever exists):
+If you are satisfied with the result, and wish to copy the script to your bash
+completions directory, simply run:
+
+```bash
+$ completely install
+```
+
+Alternatively, you can copy the script manually in one of these directories
+(whichever exists):
 
 - `/usr/share/bash-completion/completions`
 - `/usr/local/etc/bash_completion.d`
