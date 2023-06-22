@@ -222,7 +222,7 @@ completions directory, simply run:
 $ completely install
 ```
 
-Alternatively, you can copy the script manually in one of these directories
+Alternatively, you can copy the script manually to one of these directories
 (whichever exists):
 
 - `/usr/share/bash-completion/completions`
