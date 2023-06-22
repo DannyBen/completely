@@ -40,9 +40,10 @@ describe Commands::Install do
         File.write 'spec/tmp/completely.bash', 'not-important'
       end
 
-      it 'copies the script' do
+      it 'copies the script', :focus do
         Dir.chdir 'spec/tmp' do
           allow(subject).to receive(:system).with(*expected_args).and_return true
+          subject.execute %w[install completely-test]
           expect { subject.execute %w[install completely-test] }
             .to output_approval('cli/install/install-default')
         end
