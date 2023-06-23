@@ -24,7 +24,8 @@ describe Installer do
       it 'returns the command without sudo' do
         allow(subject).to receive(:root_user?).and_return true
 
-        expect(subject.command).to eq %w[cp completions.bash /usr/share/bash-completion/completions/completely-test]
+        expect(subject.command)
+          .to eq %w[cp completions.bash /usr/share/bash-completion/completions/completely-test]
       end
     end
   end
@@ -37,7 +38,8 @@ describe Installer do
 
   describe '#target_path' do
     it 'returns the first matching path' do
-      expect(subject.target_path).to eq '/usr/share/bash-completion/completions/completely-test'
+      expect(subject.target_path)
+        .to eq '/usr/share/bash-completion/completions/completely-test'
     end
   end
 
