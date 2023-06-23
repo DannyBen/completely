@@ -1,6 +1,7 @@
 describe Commands::Install do
   subject { described_class.new }
 
+  let(:leeway) { RUBY_VERSION < "3.2.0" ? 0 : 3 }
   let :mock_installer do
     instance_double Installer,
       install:        true,
@@ -11,7 +12,7 @@ describe Commands::Install do
   context 'with --help' do
     it 'shows long usage' do
       expect { subject.execute %w[install --help] }
-        .to output_approval('cli/install/help').diff(10)
+        .to output_approval('cli/install/help')
     end
   end
 
@@ -48,7 +49,7 @@ describe Commands::Install do
       allow(mock_installer).to receive(:install).and_return false
 
       expect { subject.execute %w[install completely-test] }
-        .to raise_approval('cli/install/install-error')
+        .to raise_approval('cli/install/install-error').diff(leeway)
     end
   end
 end
