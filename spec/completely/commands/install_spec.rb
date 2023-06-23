@@ -3,8 +3,8 @@ describe Commands::Install do
 
   let :mock_installer do
     instance_double Installer,
-      install: true,
-      target_path: 'some-target-path',
+      install:        true,
+      target_path:    'some-target-path',
       command_string: 'sudo cp source target'
   end
 
@@ -42,4 +42,3 @@ describe Commands::Install do
     end
   end
 end
-

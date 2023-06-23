@@ -22,7 +22,7 @@ describe Installer do
     context 'when the user is root' do
       it 'returns the command without sudo' do
         allow(subject).to receive(:root_user?).and_return true
-        
+
         expect(subject.command).to eq %w[cp completions.bash /usr/share/bash-completion/completions/completely-test]
       end
     end
@@ -52,7 +52,7 @@ describe Installer do
     context 'when the completions_path cannot be found' do
       it 'raises an error' do
         allow(subject).to receive(:completions_path).and_return nil
-        
+
         expect { subject.install }.to raise_approval('installer/install-no-dir')
       end
     end
@@ -60,7 +60,7 @@ describe Installer do
     context 'when the script cannot be found' do
       it 'raises an error' do
         allow(subject).to receive(:script_path).and_return missing_file
-        
+
         expect { subject.install }.to raise_approval('installer/install-no-script')
       end
     end
@@ -68,7 +68,7 @@ describe Installer do
     context 'when the target exists' do
       it 'raises an error' do
         allow(subject).to receive(:target_path).and_return existing_file
-        
+
         expect { subject.install }.to raise_approval('installer/install-target-exists')
       end
     end
@@ -76,9 +76,9 @@ describe Installer do
     context 'when the target exists but force=true' do
       it 'proceeds to install' do
         allow(subject).to receive(:target_path).and_return existing_file
-        
+
         expect(subject).to receive(:system).with(*expected_command)
-        
+
         subject.install force: true
       end
     end
@@ -86,9 +86,9 @@ describe Installer do
     context 'when the target does not exist' do
       it 'proceeds to install' do
         allow(subject).to receive(:target_path).and_return missing_file
-        
+
         expect(subject).to receive(:system).with(*expected_command)
-        
+
         subject.install
       end
     end
