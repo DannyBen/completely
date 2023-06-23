@@ -1,0 +1,19 @@
+Uninstall a bash completion script
+
+This command will remove the completion script for the specified program from
+all the bash completion directories.
+
+Usage:
+  completely uninstall PROGRAM [--dry]
+  completely uninstall (-h|--help)
+
+Options:
+  -d --dry
+    Show the uninstallation command but do not run it
+
+  -h --help
+    Show this help
+
+Parameters:
+  PROGRAM
+    Name of the program the completions are for.

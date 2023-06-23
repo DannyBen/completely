@@ -1,11 +1,16 @@
 describe Installer do
   subject { described_class.new program: program, script_path: script_path }
 
-  let(:leeway) { RUBY_VERSION < "3.2.0" ? 0 : 3 }
+  let(:leeway) { RUBY_VERSION < '3.2.0' ? 0 : 3 }
   let(:program) { 'completely-test' }
   let(:script_path) { 'completions.bash' }
-  let(:expected_command) do
+  let(:targets) { subject.target_directories.map { |dir| "#{dir}/#{program}" } }
+  let(:install_command) do
     %W[sudo cp #{subject.script_path} #{subject.target_path}]
+  end
+
+  let(:uninstall_command) do
+    %w[sudo rm -f] + targets
   end
 
   describe '#target_directories' do
@@ -15,9 +20,16 @@ describe Installer do
     end
   end
 
-  describe '#command' do
+  describe '#target_path' do
+    it 'returns the first matching path' do
+      expect(subject.target_path)
+        .to eq '/usr/share/bash-completion/completions/completely-test'
+    end
+  end
+
+  describe '#install_command' do
     it 'returns a copy command as an array' do
-      expect(subject.command)
+      expect(subject.install_command)
         .to eq %w[sudo cp completions.bash /usr/share/bash-completion/completions/completely-test]
     end
 
@@ -25,22 +37,35 @@ describe Installer do
       it 'returns the command without sudo' do
         allow(subject).to receive(:root_user?).and_return true
 
-        expect(subject.command)
+        expect(subject.install_command)
           .to eq %w[cp completions.bash /usr/share/bash-completion/completions/completely-test]
       end
     end
   end
 
-  describe '#command_string' do
-    it 'returns the command as a string' do
-      expect(subject.command_string).to eq subject.command.join(' ')
+  describe '#install_command_string' do
+    it 'returns the install command as a string' do
+      expect(subject.install_command_string).to eq subject.install_command.join(' ')
     end
   end
 
-  describe '#target_path' do
-    it 'returns the first matching path' do
-      expect(subject.target_path)
-        .to eq '/usr/share/bash-completion/completions/completely-test'
+  describe '#uninstall_command' do
+    it 'returns an rm command as an array' do
+      expect(subject.uninstall_command).to eq %w[sudo rm -f] + targets
+    end
+
+    context 'when the user is root' do
+      it 'returns the command without sudo' do
+        allow(subject).to receive(:root_user?).and_return true
+
+        expect(subject.uninstall_command).to eq %w[rm -f] + targets
+      end
+    end
+  end
+
+  describe '#uninstall_command_string' do
+    it 'returns the uninstall command as a string' do
+      expect(subject.uninstall_command_string).to eq subject.uninstall_command.join(' ')
     end
   end
 
@@ -84,7 +109,7 @@ describe Installer do
       it 'proceeds to install' do
         allow(subject).to receive(:target_path).and_return existing_file
 
-        expect(subject).to receive(:system).with(*expected_command)
+        expect(subject).to receive(:system).with(*install_command)
 
         subject.install force: true
       end
@@ -94,10 +119,18 @@ describe Installer do
       it 'proceeds to install' do
         allow(subject).to receive(:target_path).and_return missing_file
 
-        expect(subject).to receive(:system).with(*expected_command)
+        expect(subject).to receive(:system).with(*install_command)
 
         subject.install
       end
+    end
+  end
+
+  describe '#uninstall' do
+    it 'removes the completions script' do
+      expect(subject).to receive(:system).with(*uninstall_command)
+
+      subject.uninstall
     end
   end
 end

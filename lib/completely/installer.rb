@@ -15,13 +15,22 @@ module Completely
       ]
     end
 
-    def command
+    def install_command
       result = root_user? ? [] : %w[sudo]
       result + %W[cp #{script_path} #{target_path}]
     end
 
-    def command_string
-      command.join ' '
+    def install_command_string
+      install_command.join ' '
+    end
+
+    def uninstall_command
+      result = root_user? ? [] : %w[sudo]
+      result + %w[rm -f] + target_directories.map { |dir| "#{dir}/#{program}" }
+    end
+
+    def uninstall_command_string
+      uninstall_command.join ' '
     end
 
     def target_path
@@ -41,7 +50,11 @@ module Completely
         raise InstallError, "File exists: m`#{target_path}`"
       end
 
-      system(*command)
+      system(*install_command)
+    end
+
+    def uninstall
+      system(*uninstall_command)
     end
 
   private
