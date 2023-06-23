@@ -1,1 +1,1 @@
-#<RuntimeError: File exists: m`spec/fixtures/existing-file.txt`>
+#<Completely::InstallError: File exists: m`spec/fixtures/existing-file.txt`>

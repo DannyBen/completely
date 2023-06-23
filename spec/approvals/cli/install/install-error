@@ -1,2 +1,2 @@
-#<RuntimeError: Failed running command:
+#<Completely::InstallError: Failed running command:
 nb`sudo cp source target`>

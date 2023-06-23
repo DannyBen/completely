@@ -3,6 +3,7 @@ if ENV['BYEBUG']
   require 'lp'
 end
 
+require 'completely/exceptions'
 require 'completely/pattern'
 require 'completely/completions'
 require 'completely/tester'
