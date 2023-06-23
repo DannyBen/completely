@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'zsh compatibility' do
   subject do
     Dir.chdir 'spec/tmp' do

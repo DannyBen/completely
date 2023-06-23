@@ -15,24 +15,8 @@ module Completely
       ]
     end
 
-    def install(force: false)
-      unless completions_path
-        raise 'Cannot determine system completions directory'
-      end
-
-      unless File.exist? script_path
-        raise "Cannot find script: m`#{script_path}`"
-      end
-
-      if target_exist? && !force
-        raise "File exists: m`#{target_path}`"
-      end
-
-      system(*command)
-    end
-
     def command
-      result = root? ? [] : %w[sudo]
+      result = root_user? ? [] : %w[sudo]
       result + %W[cp #{script_path} #{target_path}]
     end
 
@@ -44,13 +28,33 @@ module Completely
       "#{completions_path}/#{program}"
     end
 
+    def install(force: false)
+      unless completions_path
+        raise 'Cannot determine system completions directory'
+      end
+
+      unless script_exist?
+        raise "Cannot find script: m`#{script_path}`"
+      end
+
+      if target_exist? && !force
+        raise "File exists: m`#{target_path}`"
+      end
+
+      system(*command)
+    end
+
   private
 
     def target_exist?
       File.exist? target_path
     end
 
-    def root?
+    def script_exist?
+      File.exist? script_path
+    end
+
+    def root_user?
       Process.uid.zero?
     end
 
