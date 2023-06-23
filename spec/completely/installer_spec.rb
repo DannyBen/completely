@@ -16,7 +16,8 @@ describe Installer do
 
   describe '#command' do
     it 'returns a copy command as an array' do
-      expect(subject.command).to eq %w[sudo cp completions.bash /usr/share/bash-completion/completions/completely-test]
+      expect(subject.command)
+        .to eq %w[sudo cp completions.bash /usr/share/bash-completion/completions/completely-test]
     end
 
     context 'when the user is root' do
