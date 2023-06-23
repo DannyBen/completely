@@ -11,13 +11,18 @@ Gem::Specification.new do |s|
   s.email       = 'db@dannyben.com'
   s.files       = Dir['README.md', 'lib/**/*.*']
   s.executables = ['completely']
-  s.homepage    = 'https://github.com/dannyben/completely'
+  s.homepage    = 'https://github.com/DannyBen/completely'
   s.license     = 'MIT'
 
-  s.required_ruby_version = '>= 2.7.0'
+  s.required_ruby_version = '>= 3.0'
 
   s.add_runtime_dependency 'colsole', '>= 0.8.1', '< 2'
   s.add_runtime_dependency 'mister_bin', '~> 0.7'
 
-  s.metadata['rubygems_mfa_required'] = 'true'
+  s.metadata = {
+    'bug_tracker_uri'       => 'https://github.com/DannyBen/completely/issues',
+    'changelog_uri'         => 'https://github.com/DannyBen/completely/blob/master/CHANGELOG.md',
+    'source_code_uri'       => 'https://github.com/DannyBen/completely',
+    'rubygems_mfa_required' => 'true',
+  }
 end

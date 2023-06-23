@@ -45,8 +45,7 @@ describe Commands::Install do
   context 'when the installer fails' do
     it 'raises an error' do
       allow(subject).to receive(:installer).and_return(mock_installer)
-
-      expect(mock_installer).to receive(:install).and_return false
+      allow(mock_installer).to receive(:install).and_return false
 
       expect { subject.execute %w[install completely-test] }
         .to raise_approval('cli/install/install-error')
