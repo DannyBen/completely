@@ -1,6 +1,14 @@
 Change Log
 ========================================
 
+v0.6.0 - 2023-06-23
+----------------------------------------
+
+- Refactor install command and add an Installer model
+- Drop support for Ruby 2.7
+- Change exception classes
+
+
 v0.5.4 - 2023-04-21
 ----------------------------------------
 
