@@ -1,6 +1,7 @@
 describe Installer do
   subject { described_class.new program: program, script_path: script_path }
 
+  let(:leeway) { RUBY_VERSION < "3.2.0" ? 0 : 3 }
   let(:program) { 'completely-test' }
   let(:script_path) { 'completions.bash' }
   let(:expected_command) do
@@ -57,6 +58,7 @@ describe Installer do
         allow(subject).to receive(:completions_path).and_return nil
 
         expect { subject.install }.to raise_approval('installer/install-no-dir')
+          .diff(leeway)
       end
     end
 
@@ -65,6 +67,7 @@ describe Installer do
         allow(subject).to receive(:script_path).and_return missing_file
 
         expect { subject.install }.to raise_approval('installer/install-no-script')
+          .diff(leeway)
       end
     end
 
@@ -73,6 +76,7 @@ describe Installer do
         allow(subject).to receive(:target_path).and_return existing_file
 
         expect { subject.install }.to raise_approval('installer/install-target-exists')
+          .diff(leeway)
       end
     end
 
