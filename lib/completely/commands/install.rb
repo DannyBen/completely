@@ -21,7 +21,7 @@ module Completely
 
       def run
         if args['--dry']
-          installer.command_string
+          puts installer.command_string
           return
         end
 
