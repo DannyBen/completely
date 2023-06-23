@@ -1,10 +1,11 @@
 require 'mister_bin'
-require 'completely/version'
 require 'completely/commands/generate'
 require 'completely/commands/init'
 require 'completely/commands/install'
 require 'completely/commands/preview'
 require 'completely/commands/test'
+require 'completely/commands/uninstall'
+require 'completely/version'
 
 module Completely
   class CLI
@@ -18,6 +19,7 @@ module Completely
       runner.route 'generate',  to: Commands::Generate
       runner.route 'test',      to: Commands::Test
       runner.route 'install',   to: Commands::Install
+      runner.route 'uninstall', to: Commands::Uninstall
 
       runner
     end

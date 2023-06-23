@@ -4,9 +4,9 @@ describe Commands::Install do
   let(:leeway) { RUBY_VERSION < "3.2.0" ? 0 : 5 }
   let :mock_installer do
     instance_double Installer,
-      install:        true,
-      target_path:    'some-target-path',
-      command_string: 'sudo cp source target'
+      install:                true,
+      target_path:            'some-target-path',
+      install_command_string: 'sudo cp source target'
   end
 
   context 'with --help' do
