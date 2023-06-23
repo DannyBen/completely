@@ -3,11 +3,12 @@
 /completely.bash
 /completely.yaml
 /coverage
+/debug.runfile
 /dev
 /doc
 /Gemfile.lock
 /gems
+/out.sh
+/spec/status.txt
 /spec/tmp
-/debug.runfile
 /tmp
-out.sh

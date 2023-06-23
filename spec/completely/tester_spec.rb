@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Tester do
   subject { described_class.new script_path: script_path, function_name: function_name }
 

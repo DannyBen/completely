@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Pattern do
   subject { described_class.new text, completions, function_name }
 

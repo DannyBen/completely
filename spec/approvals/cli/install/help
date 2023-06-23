@@ -1,11 +1,7 @@
 Install a bash completion script
 
-This command will copy the specified file to one of the following directories:
-
-  - /usr/share/bash-completion/completions
-  - /usr/local/etc/bash_completion.d
-  - /home/vagrant/.bash_completion.d
-
+This command will copy the specified file to one of the bash completion
+directories.
 The target filename will be the program name, and sudo will be used if
 necessary.
 

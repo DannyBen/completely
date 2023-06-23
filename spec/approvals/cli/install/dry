@@ -1,1 +1,1 @@
-sudo cp README.md /usr/share/bash-completion/completions/completely-test
+sudo cp completely.bash /usr/share/bash-completion/completions/completely-test

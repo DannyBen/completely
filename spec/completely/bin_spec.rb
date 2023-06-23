@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'bin/completely' do
   subject { CLI.runner }
 
