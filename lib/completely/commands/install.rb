@@ -26,7 +26,7 @@ module Completely
         end
 
         success = installer.install force: args['--force']
-        raise "Failed running command:\nnb`#{installer.command_string}`" unless success
+        raise InstallError, "Failed running command:\nnb`#{installer.command_string}`" unless success
 
         say "Saved m`#{installer.target_path}`"
         say 'You may need to restart your session to test it'

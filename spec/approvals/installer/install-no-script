@@ -1,1 +1,1 @@
-#<RuntimeError: Cannot find script: m`tmp/missing-file`>
+#<Completely::InstallError: Cannot find script: m`tmp/missing-file`>

@@ -1,1 +1,1 @@
-#<RuntimeError: Cannot determine system completions directory>
+#<Completely::InstallError: Cannot determine system completions directory>

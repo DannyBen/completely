@@ -30,15 +30,15 @@ module Completely
 
     def install(force: false)
       unless completions_path
-        raise 'Cannot determine system completions directory'
+        raise InstallError, 'Cannot determine system completions directory'
       end
 
       unless script_exist?
-        raise "Cannot find script: m`#{script_path}`"
+        raise InstallError, "Cannot find script: m`#{script_path}`"
       end
 
       if target_exist? && !force
-        raise "File exists: m`#{target_path}`"
+        raise InstallError, "File exists: m`#{target_path}`"
       end
 
       system(*command)

@@ -12,7 +12,7 @@ module Completely
       environment_config_path
 
       def run
-        raise "File already exists: #{config_path}" if File.exist? config_path
+        raise Error, "File already exists: #{config_path}" if File.exist? config_path
 
         File.write config_path, sample
         say "Saved m`#{config_path}`"
