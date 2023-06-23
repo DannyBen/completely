@@ -1,7 +1,7 @@
 describe Commands::Install do
   subject { described_class.new }
 
-  let(:leeway) { RUBY_VERSION < "3.2.0" ? 0 : 5 }
+  let(:leeway) { RUBY_VERSION < '3.2.0' ? 0 : 5 }
   let :mock_installer do
     instance_double Installer,
       install:                true,

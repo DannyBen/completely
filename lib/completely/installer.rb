@@ -26,12 +26,12 @@ module Completely
 
     def uninstall_command
       result = root_user? ? [] : %w[sudo]
-      result += %W[rm -f] + target_directories.map { |dir| "#{dir}/#{program}" }
+      result + %w[rm -f] + target_directories.map { |dir| "#{dir}/#{program}" }
     end
 
     def uninstall_command_string
       uninstall_command.join ' '
-    end    
+    end
 
     def target_path
       "#{completions_path}/#{program}"
@@ -52,7 +52,7 @@ module Completely
 
       system(*install_command)
     end
-    
+
     def uninstall
       system(*uninstall_command)
     end

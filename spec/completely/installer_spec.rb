@@ -1,7 +1,7 @@
 describe Installer do
   subject { described_class.new program: program, script_path: script_path }
 
-  let(:leeway) { RUBY_VERSION < "3.2.0" ? 0 : 3 }
+  let(:leeway) { RUBY_VERSION < '3.2.0' ? 0 : 3 }
   let(:program) { 'completely-test' }
   let(:script_path) { 'completions.bash' }
   let(:targets) { subject.target_directories.map { |dir| "#{dir}/#{program}" } }
@@ -10,7 +10,7 @@ describe Installer do
   end
 
   let(:uninstall_command) do
-    %W[sudo rm -f] + targets
+    %w[sudo rm -f] + targets
   end
 
   describe '#target_directories' do
