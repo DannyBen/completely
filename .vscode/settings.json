@@ -1,5 +1,0 @@
-{
-    "yaml.schemas": {
-        "schemas/completely.json": "fixtures/**/*.yaml",
-    }
-}
