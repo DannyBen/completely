@@ -11,6 +11,7 @@ module Completely
       @target_directories ||= %W[
         /usr/share/bash-completion/completions
         /usr/local/etc/bash_completion.d
+        #{Dir.home}/.local/share/bash-completion/completions
         #{Dir.home}/.bash_completion.d
       ]
     end
