@@ -227,6 +227,7 @@ Alternatively, you can copy the script manually to one of these directories
 
 - `/usr/share/bash-completion/completions`
 - `/usr/local/etc/bash_completion.d`
+- `~/.local/share/bash-completion/completions`
 
 ## Testing and debugging completion scripts
 
