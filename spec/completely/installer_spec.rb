@@ -74,8 +74,7 @@ describe Installer do
     let(:missing_file) { 'tmp/missing-file' }
 
     before do
-      allow(subject).to receive(:script_path).and_return existing_file
-      allow(subject).to receive(:target_path).and_return missing_file
+      allow(subject).to receive_messages(script_path: existing_file, target_path: missing_file)
     end
 
     context 'when the completions_path cannot be found' do
