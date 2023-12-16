@@ -16,7 +16,7 @@ describe Installer do
   describe '#target_directories' do
     it 'returns an array of potential completion directories' do
       expect(subject.target_directories).to be_an Array
-      expect(subject.target_directories.size).to eq 3
+      expect(subject.target_directories.size).to eq 4
     end
   end
 
