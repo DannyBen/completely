@@ -77,7 +77,7 @@ describe Commands::Test do
     end
   end
 
-  context 'when there is no compeltely.yaml or COMPLETELY_CONFIG_PATH' do
+  context 'when there is no completely.yaml or COMPLETELY_CONFIG_PATH' do
     before { system 'rm -f completely.yaml' }
 
     it 'fails gracefully' do
