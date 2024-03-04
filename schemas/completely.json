@@ -4,13 +4,8 @@
         "invalid-command-substitution": {
             "type": "string",
             "pattern": "\\$\\(\\s*\\)"
-        }
-    },
-    "title": "completion",
-    "description": "A completion of the current application\nhttps://github.com/DannyBen/completely#using-the-completely-command-line",
-    "type": "object",
-    "patternProperties": {
-        ".": {
+        },
+        "completion": {
             "title": "completions",
             "description": "Completions of the current command or sub-command\nhttps://github.com/DannyBen/completely#using-the-completely-command-line",
             "type": "array",
@@ -53,6 +48,22 @@
                     "<variable>"
                 ]
             }
+        }
+    },
+    "title": "completion",
+    "description": "A completion of the current application\nhttps://github.com/DannyBen/completely#using-the-completely-command-line",
+    "type": "object",
+    "properties": {
+        "mygit checkout": {
+            "$ref": "#/definitions/completion"
+        },
+        "mygit checkout*--branch": {
+            "$ref": "#/definitions/completion"
+        }
+    },
+    "patternProperties": {
+        ".": {
+            "$ref": "#/definitions/completion"
         }
     },
     "additionalProperties": false
