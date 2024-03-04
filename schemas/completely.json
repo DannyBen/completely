@@ -1,5 +1,11 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+        "invalid-command-substitution": {
+            "type": "string",
+            "pattern": "\\$\\(\\s*\\)"
+        }
+    },
     "title": "completion",
     "description": "A completion of the current application\nhttps://github.com/DannyBen/completely#using-the-completely-command-line",
     "type": "object",
@@ -14,6 +20,9 @@
                 "description": "A completion of the current command or sub-command\nhttps://github.com/DannyBen/completely#using-the-completely-command-line",
                 "type": "string",
                 "minLength": 1,
+                "not": {
+                    "$ref": "#/definitions/invalid-command-substitution"
+                },
                 "examples": [
                     "--help",
                     "--version",
