@@ -28,6 +28,7 @@
                     "--version",
                     "-h",
                     "-v",
+                    "--",
                     "<alias>",
                     "<arrayvar>",
                     "<binding>",
