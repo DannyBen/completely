@@ -1,4 +1,4 @@
-require "byebug"
+require 'debug'
 require 'completely/version'
 
 title   "Completely Developer Toolbelt"
