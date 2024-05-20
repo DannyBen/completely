@@ -28,7 +28,7 @@ _completely_completions() {
   local compline="${compwords[*]}"
 
   local original_comp_wordbreaks="$COMP_WORDBREAKS"
-  COMP_WORDBREAKS="${COMP_WORDBREAKS//[:;=]/}"
+  COMP_WORDBREAKS="${COMP_WORDBREAKS//[:=]/}"
 
   if [[ -n "$COMPLETELY_DEBUG" ]]; then
     echo "compline: '$compline'" > 'completely-debug.txt'

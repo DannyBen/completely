@@ -28,7 +28,7 @@ _mygit_completions() {
   local compline="${compwords[*]}"
 
   local original_comp_wordbreaks="$COMP_WORDBREAKS"
-  COMP_WORDBREAKS="${COMP_WORDBREAKS//[:;=]/}"
+  COMP_WORDBREAKS="${COMP_WORDBREAKS//[:=]/}"
 
   case "$compline" in
     'status'*)
