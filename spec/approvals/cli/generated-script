@@ -27,6 +27,9 @@ _mygit_completions() {
   local compwords=("${COMP_WORDS[@]:1:$COMP_CWORD-1}")
   local compline="${compwords[*]}"
 
+  local original_comp_wordbreaks="$COMP_WORDBREAKS"
+  COMP_WORDBREAKS="${COMP_WORDBREAKS//[:;=]/}"
+
   case "$compline" in
     'status'*)
       while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_mygit_completions_filter "--help --verbose --branch $(git branch 2> /dev/null)")" -- "$cur" )
@@ -45,6 +48,8 @@ _mygit_completions() {
       ;;
 
   esac
+
+  COMP_WORDBREAKS="$original_comp_wordbreaks"
 } &&
 complete -F _mygit_completions mygit
 
