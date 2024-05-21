@@ -19,6 +19,16 @@ jobs:
     - name: Install OS dependencies
       run: sudo apt-get -y install libyaml-dev
 
+    # Rush needed for easy installation of stuff
+    - name: Install rush
+      run: curl -Ls http://get.dannyb.co/rush/setup | bash
+
+    - name: Connect rush repo
+      run: rush clone dannyben --shallow --default
+
+    - name: Install shfmt
+      run: rush get shfmt
+
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with: 

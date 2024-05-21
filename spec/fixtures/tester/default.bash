@@ -32,25 +32,25 @@ _cli_completions() {
 
   case "$compline" in
     'command childcommand'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_cli_completions_filter "--quiet --verbose -q -v")" -- "$cur" )
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_cli_completions_filter "--quiet --verbose -q -v")" -- "$cur")
       ;;
 
     'command subcommand'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_cli_completions_filter "--force --quiet")" -- "$cur" )
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_cli_completions_filter "--force --quiet")" -- "$cur")
       ;;
 
     'command'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_cli_completions_filter "subcommand childcommand")" -- "$cur" )
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_cli_completions_filter "subcommand childcommand")" -- "$cur")
       ;;
 
     *)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_cli_completions_filter "--help --version command conquer")" -- "$cur" )
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_cli_completions_filter "--help --version command conquer")" -- "$cur")
       ;;
 
   esac
 
   COMP_WORDBREAKS="$original_comp_wordbreaks"
 } &&
-complete -F _cli_completions cli
+  complete -F _cli_completions cli
 
 # ex: filetype=sh

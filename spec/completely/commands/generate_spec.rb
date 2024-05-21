@@ -20,6 +20,11 @@ describe Commands::Generate do
       expect { subject.execute %w[generate] }.to output_approval('cli/generate/no-args')
       expect(`shellcheck completely.bash 2>&1`).to be_empty
     end
+
+    it 'generates a shfmt compliant script', :focus do
+      expect { subject.execute %w[generate] }.to output_approval('cli/generate/no-args')
+      expect(`shfmt -d -i 2 -ci completely.bash 2>&1`).to be_empty
+    end
   end
 
   context 'with CONFIG_PATH' do
