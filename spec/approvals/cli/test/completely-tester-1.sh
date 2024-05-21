@@ -40,26 +40,26 @@ _mygit_completions() {
 
   case "$compline" in
     'status'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_mygit_completions_filter "--help --verbose --branch $(git branch 2> /dev/null)")" -- "$cur" )
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "--help --verbose --branch $(git branch 2>/dev/null)")" -- "$cur")
       ;;
 
     'commit'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A file -W "$(_mygit_completions_filter "--help --message --all -a --quiet -q")" -- "$cur" )
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -A file -W "$(_mygit_completions_filter "--help --message --all -a --quiet -q")" -- "$cur")
       ;;
 
     'init'*)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A directory -W "$(_mygit_completions_filter "--bare")" -- "$cur" )
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -A directory -W "$(_mygit_completions_filter "--bare")" -- "$cur")
       ;;
 
     *)
-      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_mygit_completions_filter "--help --version status init commit")" -- "$cur" )
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "--help --version status init commit")" -- "$cur")
       ;;
 
   esac
 
   COMP_WORDBREAKS="$original_comp_wordbreaks"
 } &&
-complete -F _mygit_completions mygit
+  complete -F _mygit_completions mygit
 
 # ex: filetype=sh
 

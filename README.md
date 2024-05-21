@@ -77,7 +77,7 @@ mygit status:
 - --help
 - --verbose
 - --branch
-- $(git branch 2> /dev/null)
+- $(git branch 2>/dev/null)
 
 mygit init:
 - --bare
@@ -169,7 +169,7 @@ branches to your suggestions, use the following:
 
 ```yaml
 mygit:
-- $(git branch 2> /dev/null)
+- $(git branch 2>/dev/null)
 ```
 
 The `2> /dev/null` is used so that if the command is executed in a directory
@@ -186,10 +186,10 @@ mygit checkout:
 - -b
 
 mygit checkout*--branch:
-- $(git branch 2> /dev/null)
+- $(git branch 2>/dev/null)
 
 mygit checkout*-b:
-- $(git branch 2> /dev/null)
+- $(git branch 2>/dev/null)
 ```
 
 The above will suggest git branches for commands that end with `-b` or `--branch`.
@@ -202,7 +202,7 @@ mygit checkout:
 - -b
 
 mygit checkout*--branch: &branches
-- $(git branch 2> /dev/null)
+- $(git branch 2>/dev/null)
 
 mygit checkout*-b: *branches
 ```
