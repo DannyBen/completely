@@ -12,7 +12,7 @@ send_completions() {
   echo $''
   echo $'  if [[ "${cur:0:1}" == "-" ]]; then'
   echo $'    echo "$words"'
-  echo $'  '
+  echo $''
   echo $'  else'
   echo $'    for word in $words; do'
   echo $'      [[ "${word:0:1}" != "-" ]] && result+=("$word")'
