@@ -27,6 +27,9 @@ _completely_completions() {
   local compwords=("${COMP_WORDS[@]:1:$COMP_CWORD-1}")
   local compline="${compwords[*]}"
 
+  local original_comp_wordbreaks="$COMP_WORDBREAKS"
+  COMP_WORDBREAKS="${COMP_WORDBREAKS//[:=]/}"
+
   case "$compline" in
     'generate'*)
       while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -A directory -W "$(_completely_completions_filter "--help --force")" -- "$cur" )
@@ -37,6 +40,8 @@ _completely_completions() {
       ;;
 
   esac
+
+  COMP_WORDBREAKS="$original_comp_wordbreaks"
 } &&
 complete -F _completely_completions completely
 
