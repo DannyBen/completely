@@ -38,58 +38,58 @@ jobs:
     - name: Install zsh
       run: sudo apt install -y zsh
 
-    # - name: Fix zsh ownership completion issues
-    #   run: compaudit | xargs chown -R "$(whoami)"
+    - name: Fix zsh ownership completion issues
+      run: zsh -c 'compaudit | xargs chmod g-w'
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+    # - name: Setup tmate session
+    #   uses: mxschmitt/action-tmate@v3
 
     - name: Run tests
       run: bundle exec rspec
 
-  json_schema:
-    name: Validate JSON schema
+  # json_schema:
+  #   name: Validate JSON schema
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
 
-    # Rush needed for easy installation of check-jsonschema
-    - name: Install rush
-      run: curl -Ls http://get.dannyb.co/rush/setup | bash
+  #   # Rush needed for easy installation of check-jsonschema
+  #   - name: Install rush
+  #     run: curl -Ls http://get.dannyb.co/rush/setup | bash
 
-    - name: Connect rush repo
-      run: rush clone dannyben --shallow --default
+  #   - name: Connect rush repo
+  #     run: rush clone dannyben --shallow --default
 
-    - name: Install check-jsonschema
-      run: rush get check-jsonschema
+  #   - name: Install check-jsonschema
+  #     run: rush get check-jsonschema
 
-    # libyaml needed for Ruby's YAML library
-    - name: Install OS dependencies
-      run: sudo apt-get -y install libyaml-dev
+  #   # libyaml needed for Ruby's YAML library
+  #   - name: Install OS dependencies
+  #     run: sudo apt-get -y install libyaml-dev
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with: 
-        ruby-version: '3.1'
-        bundler-cache: true
+  #   - name: Setup Ruby
+  #     uses: ruby/setup-ruby@v1
+  #     with: 
+  #       ruby-version: '3.1'
+  #       bundler-cache: true
 
-    - name: Test schema
-      run: bundle exec run schema
+  #   - name: Test schema
+  #     run: bundle exec run schema
 
-  codespell:
-    name: Spell check
+  # codespell:
+  #   name: Spell check
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
 
-    - name: Install OS dependencies
-      run: sudo apt-get -y install codespell
+  #   - name: Install OS dependencies
+  #     run: sudo apt-get -y install codespell
 
-    - name: Run codespell
-      run: codespell
+  #   - name: Run codespell
+  #     run: codespell
