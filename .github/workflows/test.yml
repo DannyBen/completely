@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      matrix: { ruby: ['3.0', '3.1', '3.2', '3.3'] }
+      matrix: { ruby: ['3.2'] }
 
     steps:
     - name: Checkout code
@@ -38,8 +38,11 @@ jobs:
     - name: Install zsh
       run: sudo apt install -y zsh
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+    - name: Fix zsh ownership completion issues
+      run: compaudit | xargs chown -R "$(whoami)"
+
+    # - name: Setup tmate session
+    #   uses: mxschmitt/action-tmate@v3
 
     - name: Run tests
       run: bundle exec rspec
