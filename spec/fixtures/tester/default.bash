@@ -27,9 +27,6 @@ _cli_completions() {
   local compwords=("${COMP_WORDS[@]:1:$COMP_CWORD-1}")
   local compline="${compwords[*]}"
 
-  local original_comp_wordbreaks="$COMP_WORDBREAKS"
-  COMP_WORDBREAKS="${COMP_WORDBREAKS//[:=]/}"
-
   case "$compline" in
     'command childcommand'*)
       while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_cli_completions_filter "--quiet --verbose -q -v")" -- "$cur")
@@ -48,8 +45,6 @@ _cli_completions() {
       ;;
 
   esac
-
-  COMP_WORDBREAKS="$original_comp_wordbreaks"
 } &&
   complete -F _cli_completions cli
 
