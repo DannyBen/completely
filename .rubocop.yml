@@ -9,6 +9,7 @@ inherit_gem:
 
 AllCops:
   TargetRubyVersion: 3.0
+  SuggestExtensions: false
   Exclude:
     - 'spec/approvals/**/*'
     - 'debug.rb'
