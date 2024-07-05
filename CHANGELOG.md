@@ -1,5 +1,14 @@
-Change Log
+Changelog
 ========================================
+
+v0.6.3 - 2024-07-05
+----------------------------------------
+
+- Allow using colon, semicolon and equal sign in completions [`a9e6a6e`](https://github.com/DannyBen/completely/commit/a9e6a6e)
+- Check output with shfmt [`3f7ae7e`](https://github.com/DannyBen/completely/commit/3f7ae7e)
+- Revert wordbreak (colon) patch [`24f9d3d`](https://github.com/DannyBen/completely/commit/24f9d3d)
+- Compare [`v0.6.2..v0.6.3`](https://github.com/dannyben/completely/compare/v0.6.2..v0.6.3)
+
 
 v0.6.2 - 2024-02-08
 ----------------------------------------
