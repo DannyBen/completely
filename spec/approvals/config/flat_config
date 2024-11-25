@@ -1,0 +1,19 @@
+---
+git:
+- "--help"
+- "--version"
+- init
+- checkout
+git init:
+- "--help"
+- "--bare"
+git checkout:
+- "--help"
+- "--branch"
+- "-b"
+git checkout*--branch:
+- dev
+- master
+git checkout*-b:
+- dev
+- master
