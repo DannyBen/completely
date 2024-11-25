@@ -7,21 +7,18 @@ module Completely
 
     class << self
       def load(config_path, function_name: nil)
-        begin
-          data = YAML.load_file config_path, aliases: true
-        rescue ArgumentError
-          # :nocov:
-          data = YAML.load_file config_path
-          # :nocov:
-        end
-
-        new data, function_name: function_name
+        config = Config.load config_path
+        new config, function_name: function_name
       end
     end
 
     def initialize(config, function_name: nil)
-      @config = config
+      @config = config.is_a?(Config) ? config : Config.new(config)
       @function_name = function_name
+    end
+
+    def flat_config
+      @flat_config ||= config.flat_config
     end
 
     def patterns
@@ -54,7 +51,7 @@ module Completely
   private
 
     def patterns!
-      result = config.map do |text, completions|
+      result = flat_config.map do |text, completions|
         Pattern.new text, completions, pattern_function_name
       end
 
@@ -70,7 +67,7 @@ module Completely
     end
 
     def command
-      @command ||= config.keys.first.split.first
+      @command ||= flat_config.keys.first.split.first
     end
 
     def function_name

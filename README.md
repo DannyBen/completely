@@ -40,10 +40,10 @@ or with Docker:
 $ alias completely='docker run --rm -it --user $(id -u):$(id -g) --volume "$PWD:/app" dannyben/completely'
 ```
 
-## Using the `completely` command line
+## Configuration syntax
 
-The `completely` command line works with a simple YAML configuration file as
-input, and generates a bash completions script as output.
+Completely works with a simple YAML configuration file as input, and generates
+a bash completions script as output.
 
 The configuration file is built of blocks that look like this:
 
@@ -59,7 +59,7 @@ for the auto complete process.
 
 You can save a sample YAML file by running:
 
-```
+```bash
 $ completely init
 ```
 
@@ -67,37 +67,34 @@ This will generate a file named `completely.yaml` with this content:
 
 ```yaml
 mygit:
+- -h
+- -v
 - --help
 - --version
-- status
 - init
-- commit
-
-mygit status:
-- --help
-- --verbose
-- --branch
-- $(git branch --format='%(refname:short)' 2>/dev/null)
+- status
 
 mygit init:
 - --bare
 - <directory>
 
-mygit commit:
-- <file>
+mygit status:
 - --help
-- --message
-- --all
-- -a
-- --quiet
-- -q
+- --verbose
+- --branch
+- -b
+
+mygit status*--branch: &branches
+- $(git branch --format='%(refname:short)' 2>/dev/null)
+
+mygit status*-b: *branches
 ```
 
 Each pattern in this configuration file will be checked against the user's
-input, and if the input **starts with** a matching pattern, the list that 
-follows it will be suggested as completions.
+input, and if the input matches the pattern, the list that follows it will be
+suggested as completions.
 
-Note that the suggested completions will not show flags (string that start with 
+Note that the suggested completions will not show flags (strings that start with 
 a hyphen `-`) unless the input ends with a hyphen.
 
 To generate the bash script, simply run:
@@ -206,6 +203,48 @@ mygit checkout*--branch: &branches
 
 mygit checkout*-b: *branches
 ```
+
+### Alternative nested syntax
+
+Completely also supports an alternative nested syntax. You can generate this
+example by running:
+
+```bash
+$ completely init --nested
+```
+
+The example configuration below will generate the exact same script as the one
+shown at the beginning of this document.
+
+```yaml
+mygit:
+- -h
+- -v
+- --help
+- --version
+- init:
+  - --bare
+  - <directory>
+- status:
+  - --help
+  - --verbose
+  - +--branch: &branches
+    - $(git branch --format='%(refname:short)' 2>/dev/null)
+  - +-b: *branches
+```
+
+The rules here are as follows:
+
+- Each pattern (e.g., `mygit`) can have a mixed array of strings and hashes.
+- Strings and hash keys (e.e., `--help` and `init` respectively) will be used
+  as completion strings for that pattern.
+- Hashes may contain a nested mixed array of the same structure.
+- When a hash is provided, the hash key will be appended to the parent prefix.
+  In the example above, the `init` hash will create the pattern `mygit init`.
+- In order to provide a wildcard (like `mygit status*--branch` in the standard
+  configuration syntax), you can provide either a `*` or a `+` prefix to the
+  hash key (e.g., `+--branch` or `"*--branch"`). Note that when using a `*`, 
+  the hash key must be quoted since asterisks have special meaning in YAML.
 
 ## Using the generated completion scripts
 

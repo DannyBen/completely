@@ -28,12 +28,16 @@ _mygit_completions() {
   local compline="${compwords[*]}"
 
   case "$compline" in
-    'status'*)
-      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "--help --verbose --branch $(git branch --format='%(refname:short)' 2>/dev/null)")" -- "$cur")
+    'status'*'--branch')
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "$(git branch --format='%(refname:short)' 2>/dev/null)")" -- "$cur")
       ;;
 
-    'commit'*)
-      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -A file -W "$(_mygit_completions_filter "--help --message --all -a --quiet -q")" -- "$cur")
+    'status'*'-b')
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "$(git branch --format='%(refname:short)' 2>/dev/null)")" -- "$cur")
+      ;;
+
+    'status'*)
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "--help --verbose --branch -b")" -- "$cur")
       ;;
 
     'init'*)
@@ -41,7 +45,7 @@ _mygit_completions() {
       ;;
 
     *)
-      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "--help --version status init commit")" -- "$cur")
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "-h -v --help --version init status")" -- "$cur")
       ;;
 
   esac

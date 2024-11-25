@@ -1,0 +1,13 @@
+git:
+- --help
+- --version
+- init:
+  - --help
+  - --bare
+- checkout:
+  - --help
+  # + prefix is a wildcard (can also use "*--branches" instead, but in quotes)
+  - +--branch: &branches
+    - dev
+    - master
+  - +-b: *branches
