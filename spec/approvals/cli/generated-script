@@ -29,7 +29,7 @@ _mygit_completions() {
 
   case "$compline" in
     'status'*)
-      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "--help --verbose --branch $(git branch 2>/dev/null)")" -- "$cur")
+      while read -r; do COMPREPLY+=("$REPLY"); done < <(compgen -W "$(_mygit_completions_filter "--help --verbose --branch $(git branch --format='%(refname:short)' 2>/dev/null)")" -- "$cur")
       ;;
 
     'commit'*)
