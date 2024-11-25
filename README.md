@@ -238,9 +238,9 @@ The rules here are as follows:
 - Each pattern (e.g., `mygit`) can have a mixed array of strings and hashes.
 - Strings and hash keys (e.e., `--help` and `init` respectively) will be used
   as completion strings for that pattern.
-- Hashes may contain a nested mixed arrya of the same structure.
-- When a hash is provided, teh hash key will be appended to the parent prefix.
-  In the example above, the `init` hash will create the patter `mygit init`.
+- Hashes may contain a nested mixed array of the same structure.
+- When a hash is provided, the hash key will be appended to the parent prefix.
+  In the example above, the `init` hash will create the pattern `mygit init`.
 - In order to provide a wildcard (like `mygit status*--branch` in the standard
   configuration syntax), you can provide either a `*` or a `+` prefix to the
   hash key (e.g., `+--branch` or `"*--branch"`). Note that when using a `*`, 
