@@ -5,8 +5,10 @@ module Completely
     class Init < Base
       help 'Create a new sample YAML configuration file'
 
-      usage 'completely init [CONFIG_PATH]'
+      usage 'completely init [--nested] [CONFIG_PATH]'
       usage 'completely init (-h|--help)'
+
+      option '-n --nested', 'Generate a nested configuration'
 
       param_config_path
       environment_config_path
@@ -24,8 +26,15 @@ module Completely
         @sample ||= File.read sample_path
       end
 
+      def nested?
+        args['--nested']
+      end
+
       def sample_path
-        @sample_path ||= File.expand_path '../templates/sample.yaml', __dir__
+        @sample_path ||= begin
+          sample_name = nested? ? 'sample-nested' : 'sample'
+          File.expand_path "../templates/#{sample_name}.yaml", __dir__
+        end
       end
     end
   end
