@@ -1,6 +1,15 @@
 Changelog
 ========================================
 
+v0.7.0 - 2024-11-29
+----------------------------------------
+
+- Update instructions and template for obtaining list of git branches [`8cdfabd`](https://github.com/DannyBen/completely/commit/8cdfabd)
+- Add support for nested configuration [`742e3cd`](https://github.com/DannyBen/completely/commit/742e3cd)
+- Add `completely init --nested` and explain nested syntax in the README [`f1e17ed`](https://github.com/DannyBen/completely/commit/f1e17ed)
+- Compare [`v0.6.3..v0.7.0`](https://github.com/dannyben/completely/compare/v0.6.3..v0.7.0)
+
+
 v0.6.3 - 2024-07-05
 ----------------------------------------
 
