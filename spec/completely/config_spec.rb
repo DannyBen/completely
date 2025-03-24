@@ -15,7 +15,7 @@ describe Config do
 
     describe 'config' do
       it 'ignores the completely_config YAML key' do
-        expect(subject.config.keys).to eq ["mygit"]
+        expect(subject.config.keys).to eq ['mygit']
       end
     end
 
