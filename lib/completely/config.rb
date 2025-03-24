@@ -1,6 +1,6 @@
 module Completely
   class Config
-    attr_reader :config
+    attr_reader :config, :options
 
     class << self
       def load(config_path)
@@ -17,6 +17,7 @@ module Completely
     end
 
     def initialize(config)
+      @options = config.delete('completely_options')&.transform_keys(&:to_sym) || {}
       @config = config
     end
 
