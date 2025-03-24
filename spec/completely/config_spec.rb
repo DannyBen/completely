@@ -20,7 +20,7 @@ describe Config do
     end
 
     describe 'options' do
-      it 'returns complete_options from the YAML file' do
+      it 'returns the completely_options hash from the YAML file' do
         expect(subject.options[:complete_options]).to eq '-o nosort'
       end
     end
