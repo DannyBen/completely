@@ -1,0 +1,6 @@
+completely_options:
+  complete_options: -o nosort
+
+mygit:
+- status
+- commit
