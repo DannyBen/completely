@@ -49,6 +49,14 @@ describe Completions do
           .except(/case.*/m)
       end
     end
+
+    context 'with a configuration file that includes complete_options' do
+      let(:file) { 'complete_options' }
+
+      it 'adds the complete_options to the complete command' do
+        expect(subject.script).to match_approval 'completions/script-complete-options'
+      end
+    end
   end
 
   describe '#wrapper_function' do

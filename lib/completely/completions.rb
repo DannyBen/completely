@@ -81,5 +81,12 @@ module Completely
     def pattern_prefixes
       patterns.map(&:prefix)
     end
+
+    def complete_options_line
+      options = config.options[:complete_options]
+      return nil if options.nil? || options.strip.empty?
+
+      "#{options} "
+    end
   end
 end
