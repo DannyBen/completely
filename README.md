@@ -40,6 +40,7 @@ or with Docker:
 $ alias completely='docker run --rm -it --user $(id -u):$(id -g) --volume "$PWD:/app" dannyben/completely'
 ```
 
+
 ## Configuration syntax
 
 Completely works with a simple YAML configuration file as input, and generates
@@ -246,6 +247,7 @@ The rules here are as follows:
   hash key (e.g., `+--branch` or `"*--branch"`). Note that when using a `*`, 
   the hash key must be quoted since asterisks have special meaning in YAML.
 
+
 ## Using the generated completion scripts
 
 In order to enable the completions, simply source the generated script:
@@ -267,6 +269,7 @@ Alternatively, you can copy the script manually to one of these directories
 - `/usr/share/bash-completion/completions`
 - `/usr/local/etc/bash_completion.d`
 - `~/.local/share/bash-completion/completions`
+
 
 ## Testing and debugging completion scripts
 
@@ -305,6 +308,7 @@ puts completions.wrapper_function "custom_function_name"
 p completions.tester.test "mygit status "
 ```
 
+
 ## Completions in ZSH
 
 If you are using Oh-My-Zsh, bash completions should already be enabled,
@@ -315,6 +319,17 @@ otherwise, you should enable completion by adding this to your `~/.zshrc`
 # Load completion functions
 autoload -Uz +X compinit && compinit
 autoload -Uz +X bashcompinit && bashcompinit
+```
+
+## Customizing the `complete` command
+
+In case you wish to customize the `complete` command call in the generated
+script, you can do so by adding any additional flags to the `completely.yaml`
+configuration file using the special `completely_options` key. For example:
+
+```yaml
+completely_options:
+  complete_options: -o nosort
 ```
 
 ## Contributing / Support
