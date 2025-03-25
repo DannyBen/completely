@@ -10,10 +10,17 @@ import 'debug'
 
 help   'Test the completely JSON schema'
 action :schema do
-  file = 'lib/completely/templates/sample.yaml'
-  command = "check-jsonschema --schemafile schemas/completely.json #{file}"
-  say "\n$ check-jsonschema bb`#{file}`"
-  success = system command
-  exit 1 unless success
+  files = %w[
+    lib/completely/templates/sample.yaml
+    lib/completely/templates/sample-nested.yaml
+    spec/fixtures/complete_options.yaml
+  ]
+
+  files.each do |file|
+    command = "check-jsonschema --schemafile schemas/completely.json #{file}"
+    say "\n$ check-jsonschema bb`#{file}`"
+    success = system command
+    exit 1 unless success
+  end
 end
 
