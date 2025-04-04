@@ -1,6 +1,13 @@
 Changelog
 ========================================
 
+v0.7.1 - 2025-04-04
+----------------------------------------
+
+- Add support for modifying the `complete` command options [`690c264`](https://github.com/DannyBen/completely/commit/690c264)
+- Compare [`v0.7.0..v0.7.1`](https://github.com/dannyben/completely/compare/v0.7.0..v0.7.1)
+
+
 v0.7.0 - 2024-11-29
 ----------------------------------------
 
