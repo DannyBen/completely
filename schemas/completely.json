@@ -1,49 +1,71 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "title": "completion",
-    "description": "A completion of the current application\nhttps://github.com/DannyBen/completely#using-the-completely-command-line",
-    "type": "object",
-    "patternProperties": {
-        ".": {
-            "title": "completions",
-            "description": "Completions of the current command or sub-command\nhttps://github.com/DannyBen/completely#using-the-completely-command-line",
-            "type": "array",
-            "minItems": 1,
-            "uniqueItems": true,
-            "items": {
-                "description": "A completion of the current command or sub-command\nhttps://github.com/DannyBen/completely#using-the-completely-command-line",
-                "type": "string",
-                "minLength": 1,
-                "examples": [
-                    "--help",
-                    "--version",
-                    "-h",
-                    "-v",
-                    "<alias>",
-                    "<arrayvar>",
-                    "<binding>",
-                    "<builtin>",
-                    "<command>",
-                    "<directory>",
-                    "<disabled>",
-                    "<enabled>",
-                    "<export>",
-                    "<file>",
-                    "<function>",
-                    "<group>",
-                    "<helptopic>",
-                    "<hostname>",
-                    "<job>",
-                    "<keyword>",
-                    "<running>",
-                    "<service>",
-                    "<signal>",
-                    "<stopped>",
-                    "<user>",
-                    "<variable>"
-                ]
-            }
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "word": {
+      "type": "string",
+      "minLength": 1,
+      "examples": [
+        "--help",
+        "--version",
+        "-h",
+        "-v",
+        "<alias>",
+        "<arrayvar>",
+        "<binding>",
+        "<builtin>",
+        "<command>",
+        "<directory>",
+        "<disabled>",
+        "<enabled>",
+        "<export>",
+        "<file>",
+        "<function>",
+        "<group>",
+        "<helptopic>",
+        "<hostname>",
+        "<job>",
+        "<keyword>",
+        "<running>",
+        "<service>",
+        "<signal>",
+        "<stopped>",
+        "<user>",
+        "<variable>"
+      ]
     },
-    "additionalProperties": false
+    "wordOrMapping": {
+      "oneOf": [
+        { "$ref": "#/definitions/word" },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/wordOrMapping" }
+          }
+        }
+      ]
+    },
+    "entryArray": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/wordOrMapping" }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "completely_options": {
+      "type": "object",
+      "properties": {
+        "complete_options": {
+          "type": "string",
+          "examples": ["-o nosort"]
+        }
+      },
+      "required": ["complete_options"],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^(?!completely_options$).*": { "$ref": "#/definitions/entryArray" }
+  },
+  "additionalProperties": false
 }
