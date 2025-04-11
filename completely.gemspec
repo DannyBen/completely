@@ -14,9 +14,9 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/DannyBen/completely'
   s.license     = 'MIT'
 
-  s.required_ruby_version = '>= 3.0'
+  s.required_ruby_version = '>= 3.2'
 
-  s.add_dependency 'colsole', '>= 0.8.1', '< 2'
+  s.add_dependency 'colsole', '~> 1.0.0'
   s.add_dependency 'mister_bin', '~> 0.7'
 
   s.metadata = {
