@@ -1,11 +1,5 @@
 # Completely - Bash Completions Generator
 
-[![Gem Version](https://badge.fury.io/rb/completely.svg)](https://badge.fury.io/rb/completely)
-[![Build Status](https://github.com/DannyBen/completely/workflows/Test/badge.svg)](https://github.com/DannyBen/completely/actions?query=workflow%3ATest)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6c021b8309ac796c3919/maintainability)](https://codeclimate.com/github/DannyBen/completely/maintainability)
-
----
-
 Completely is a command line utility and a Ruby library that lets you generate
 bash completion scripts from simple YAML configuration.
 
