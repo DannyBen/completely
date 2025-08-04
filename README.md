@@ -333,6 +333,6 @@ to contribute, feel free to [open an issue][issues].
 
 ---
 
-[issues]: https://github.com/DannyBen/completely/issues
+[issues]: https://github.com/bashly-framework/completely/issues
 [compgen]: https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html
 [bashly]: https://bashly.dannyb.co/
